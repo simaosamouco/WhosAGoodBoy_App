@@ -19,6 +19,15 @@ class NamesViewController: UIViewController {
         return tb
     }()
     
+    private lazy var searchBar: UISearchBar = {
+        let sb = UISearchBar()
+        sb.placeholder = "Search..."
+        sb.layer.cornerRadius = 15
+        sb.layer.borderWidth = 0.5
+        sb.layer.borderColor = UIColor(red:0, green:0, blue:0, alpha: 1).cgColor
+        return sb
+    }()
+    
     private let bag = DisposeBag()
     
     var viewModel: NamesViewModel!
@@ -38,27 +47,41 @@ class NamesViewController: UIViewController {
         setUpViews()
         bindTableView()
         self.view.backgroundColor = .systemBackground
-        
     }
     
     private func bindTableView() {
         tableView.rx.delegate.setForwardToDelegate(self, retainDelegate: false)
         
         tableView.register(DogNameTableViewCell.self, forCellReuseIdentifier: "dogCell")
-        viewModel.dogsList.bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: DogNameTableViewCell.self)) { (row, dog, cell) in
-            if let dog = dog.breeds.first {
-                cell.dogNameLabel.text = dog?.name
-                cell.groupLabel.text = dog?.breedGroup ?? "(not specified)"
-                cell.originLabel.text = dog?.origin ?? "(not specified)"
-            }
-        }.disposed(by: bag)
         
+        searchBar.rx.text
+            .orEmpty
+            .bind(to: viewModel.searchQuery)
+            .disposed(by: bag)
+        
+        viewModel.filteredDogsList
+            .bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: DogNameTableViewCell.self)) { _, dog, cell in
+                if let dog = dog.breeds.first {
+                    cell.dogNameLabel.text = dog?.name
+                    cell.groupLabel.text = dog?.breedGroup ?? "(not specified)"
+                    cell.originLabel.text = dog?.origin ?? "(not specified)"
+                }
+            }
+            .disposed(by: bag)
     }
     
     private func setUpViews() {
         view.addSubview(tableView)
+        view.addSubview(searchBar)
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.bottom.equalTo(tableView.snp.top).offset(-8)
+        }
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(searchBar.snp.bottom).offset(8)
         }
     }
 }

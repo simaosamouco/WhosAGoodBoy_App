@@ -38,7 +38,7 @@ class ServicesManager: ServicesManagerProtocol {
     func getDogsList(completion: @escaping APICompletion<[Dog]>) {
         //It might be needed to add "page" in the parameters later
         let parameters: Parameters = [
-            "limit": 36,
+            "limit": 10,
             "has_breeds": 1,
             "api_key": apiKey
         ]

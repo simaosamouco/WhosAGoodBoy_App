@@ -29,6 +29,7 @@ class DogNameTableViewCell: UITableViewCell {
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         return label
     }()
     
@@ -81,12 +82,10 @@ class DogNameTableViewCell: UITableViewCell {
             make.leading.equalTo(dogNameLabel.snp.trailing).offset(16)
             make.trailing.equalTo(contentViewAux.snp.trailing).offset(-16)
             make.centerY.equalTo(contentViewAux)
-            
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
 }

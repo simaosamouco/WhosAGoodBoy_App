@@ -12,11 +12,30 @@ import RxCocoa
 class NamesViewModel {
     
     let dogsList = BehaviorRelay<[Dog]>(value: [])
+    let filteredDogsList = BehaviorRelay<[Dog]>(value: [])
+    let searchQuery = BehaviorRelay<String>(value: "")
+    
+    private let bag = DisposeBag()
     
     let services: ServicesManagerProtocol
     
     init(services: ServicesManagerProtocol) {
         self.services = services
+        
+        Observable.combineLatest(dogsList, searchQuery)
+            .map { array, query in
+                if query == "" {
+                    return array
+                } else {
+                    return array.filter { dog in
+                        if let dog = dog.breeds.first {
+                            return dog!.name.lowercased().contains(query.lowercased())
+                        } else { return false }
+                    }
+                }
+            }
+            .bind(to: filteredDogsList)
+            .disposed(by: bag)
     }
     
     func getDogsList() {

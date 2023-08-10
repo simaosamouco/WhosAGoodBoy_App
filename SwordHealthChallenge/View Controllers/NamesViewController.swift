@@ -11,7 +11,7 @@ class NamesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .blue
+        self.view.backgroundColor = .systemCyan
         // Do any additional setup after loading the view.
     }
     

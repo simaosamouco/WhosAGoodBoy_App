@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5AC8B34F11B3D7791D49A365 /* Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E8AE60644472B0E23C8322 /* Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework */; };
+		A0AEE235C1418187492F1A7B /* Pods_SwordHealthChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD04697DE68BCA8ED4369C9C /* Pods_SwordHealthChallenge.framework */; };
+		AB37A78CA33AAFB556C5263A /* Pods_SwordHealthChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF41771C880959B2DEB6F6FB /* Pods_SwordHealthChallengeTests.framework */; };
 		C3E5AC312A84DC9B00BFD77A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */; };
 		C3E5AC332A84DC9C00BFD77A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */; };
 		C3E5AC352A84DC9C00BFD77A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC342A84DC9C00BFD77A /* ViewController.swift */; };
@@ -18,6 +21,8 @@
 		C3E5AC612A84E4EA00BFD77A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC602A84E4EA00BFD77A /* TabBarController.swift */; };
 		C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */; };
 		C3E5AC652A84E62700BFD77A /* NamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC642A84E62700BFD77A /* NamesViewController.swift */; };
+		C3E5AC692A84F55A00BFD77A /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC682A84F55A00BFD77A /* Dog.swift */; };
+		C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC6A2A84F69D00BFD77A /* Breed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09B5C557E67D91069B8EC244 /* Pods-SwordHealthChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallenge.release.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallenge/Pods-SwordHealthChallenge.release.xcconfig"; sourceTree = "<group>"; };
+		1732FD53A1E840DFA75A3879 /* Pods-SwordHealthChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallenge.debug.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallenge/Pods-SwordHealthChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		193C9B093AF9A1D667281107 /* Pods-SwordHealthChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallengeTests.release.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallengeTests/Pods-SwordHealthChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
+		79E3CB262284D317A0E8C108 /* Pods-SwordHealthChallenge-SwordHealthChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallenge-SwordHealthChallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallenge-SwordHealthChallengeUITests/Pods-SwordHealthChallenge-SwordHealthChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B0AADD1452A069C774D16983 /* Pods-SwordHealthChallenge-SwordHealthChallengeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallenge-SwordHealthChallengeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallenge-SwordHealthChallengeUITests/Pods-SwordHealthChallenge-SwordHealthChallengeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B18972873EF59390FA5D94CD /* Pods-SwordHealthChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallengeTests.debug.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallengeTests/Pods-SwordHealthChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD04697DE68BCA8ED4369C9C /* Pods_SwordHealthChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E5AC2D2A84DC9B00BFD77A /* SwordHealthChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordHealthChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +65,10 @@
 		C3E5AC602A84E4EA00BFD77A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 		C3E5AC642A84E62700BFD77A /* NamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesViewController.swift; sourceTree = "<group>"; };
+		C3E5AC682A84F55A00BFD77A /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		C3E5AC6A2A84F69D00BFD77A /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
+		DF41771C880959B2DEB6F6FB /* Pods_SwordHealthChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2E8AE60644472B0E23C8322 /* Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0AEE235C1418187492F1A7B /* Pods_SwordHealthChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB37A78CA33AAFB556C5263A /* Pods_SwordHealthChallengeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +92,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AC8B34F11B3D7791D49A365 /* Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DBD4EE3240B4E45321104D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD04697DE68BCA8ED4369C9C /* Pods_SwordHealthChallenge.framework */,
+				E2E8AE60644472B0E23C8322 /* Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework */,
+				DF41771C880959B2DEB6F6FB /* Pods_SwordHealthChallengeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C3E5AC242A84DC9B00BFD77A = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +116,8 @@
 				C3E5AC462A84DC9C00BFD77A /* SwordHealthChallengeTests */,
 				C3E5AC502A84DC9C00BFD77A /* SwordHealthChallengeUITests */,
 				C3E5AC2E2A84DC9B00BFD77A /* Products */,
+				C93A8F4F7B2B973BD87BF007 /* Pods */,
+				5DBD4EE3240B4E45321104D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +134,7 @@
 		C3E5AC2F2A84DC9B00BFD77A /* SwordHealthChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C3E5AC672A84F54200BFD77A /* Data Models */,
 				C3E5AC662A84E63B00BFD77A /* View Controllers */,
 				C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */,
 				C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */,
@@ -141,6 +173,29 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		C3E5AC672A84F54200BFD77A /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				C3E5AC682A84F55A00BFD77A /* Dog.swift */,
+				C3E5AC6A2A84F69D00BFD77A /* Breed.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		C93A8F4F7B2B973BD87BF007 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1732FD53A1E840DFA75A3879 /* Pods-SwordHealthChallenge.debug.xcconfig */,
+				09B5C557E67D91069B8EC244 /* Pods-SwordHealthChallenge.release.xcconfig */,
+				B0AADD1452A069C774D16983 /* Pods-SwordHealthChallenge-SwordHealthChallengeUITests.debug.xcconfig */,
+				79E3CB262284D317A0E8C108 /* Pods-SwordHealthChallenge-SwordHealthChallengeUITests.release.xcconfig */,
+				B18972873EF59390FA5D94CD /* Pods-SwordHealthChallengeTests.debug.xcconfig */,
+				193C9B093AF9A1D667281107 /* Pods-SwordHealthChallengeTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,9 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3E5AC572A84DC9C00BFD77A /* Build configuration list for PBXNativeTarget "SwordHealthChallenge" */;
 			buildPhases = (
+				3CD1393F43EAA84B4100F429 /* [CP] Check Pods Manifest.lock */,
 				C3E5AC292A84DC9B00BFD77A /* Sources */,
 				C3E5AC2A2A84DC9B00BFD77A /* Frameworks */,
 				C3E5AC2B2A84DC9B00BFD77A /* Resources */,
+				6BD60B9157A6BF23215EFFB4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -165,6 +222,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3E5AC5A2A84DC9C00BFD77A /* Build configuration list for PBXNativeTarget "SwordHealthChallengeTests" */;
 			buildPhases = (
+				75EE3E762F86415689F398DB /* [CP] Check Pods Manifest.lock */,
 				C3E5AC3F2A84DC9C00BFD77A /* Sources */,
 				C3E5AC402A84DC9C00BFD77A /* Frameworks */,
 				C3E5AC412A84DC9C00BFD77A /* Resources */,
@@ -183,9 +241,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3E5AC5D2A84DC9C00BFD77A /* Build configuration list for PBXNativeTarget "SwordHealthChallengeUITests" */;
 			buildPhases = (
+				9F9E4797008263DDF7F40DA0 /* [CP] Check Pods Manifest.lock */,
 				C3E5AC492A84DC9C00BFD77A /* Sources */,
 				C3E5AC4A2A84DC9C00BFD77A /* Frameworks */,
 				C3E5AC4B2A84DC9C00BFD77A /* Resources */,
+				0413136044395044CD5BD15B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -266,12 +326,117 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0413136044395044CD5BD15B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwordHealthChallenge-SwordHealthChallengeUITests/Pods-SwordHealthChallenge-SwordHealthChallengeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwordHealthChallenge-SwordHealthChallengeUITests/Pods-SwordHealthChallenge-SwordHealthChallengeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwordHealthChallenge-SwordHealthChallengeUITests/Pods-SwordHealthChallenge-SwordHealthChallengeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3CD1393F43EAA84B4100F429 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwordHealthChallenge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BD60B9157A6BF23215EFFB4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwordHealthChallenge/Pods-SwordHealthChallenge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwordHealthChallenge/Pods-SwordHealthChallenge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwordHealthChallenge/Pods-SwordHealthChallenge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75EE3E762F86415689F398DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwordHealthChallengeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F9E4797008263DDF7F40DA0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwordHealthChallenge-SwordHealthChallengeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C3E5AC292A84DC9B00BFD77A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */,
 				C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */,
+				C3E5AC692A84F55A00BFD77A /* Dog.swift in Sources */,
 				C3E5AC652A84E62700BFD77A /* NamesViewController.swift in Sources */,
 				C3E5AC352A84DC9C00BFD77A /* ViewController.swift in Sources */,
 				C3E5AC612A84E4EA00BFD77A /* TabBarController.swift in Sources */,
@@ -440,6 +605,7 @@
 		};
 		C3E5AC582A84DC9C00BFD77A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1732FD53A1E840DFA75A3879 /* Pods-SwordHealthChallenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -469,6 +635,7 @@
 		};
 		C3E5AC592A84DC9C00BFD77A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09B5C557E67D91069B8EC244 /* Pods-SwordHealthChallenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -498,6 +665,7 @@
 		};
 		C3E5AC5B2A84DC9C00BFD77A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B18972873EF59390FA5D94CD /* Pods-SwordHealthChallengeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -518,6 +686,7 @@
 		};
 		C3E5AC5C2A84DC9C00BFD77A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 193C9B093AF9A1D667281107 /* Pods-SwordHealthChallengeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -538,6 +707,7 @@
 		};
 		C3E5AC5E2A84DC9C00BFD77A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0AADD1452A069C774D16983 /* Pods-SwordHealthChallenge-SwordHealthChallengeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -556,6 +726,7 @@
 		};
 		C3E5AC5F2A84DC9C00BFD77A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79E3CB262284D317A0E8C108 /* Pods-SwordHealthChallenge-SwordHealthChallengeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

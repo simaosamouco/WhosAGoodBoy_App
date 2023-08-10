@@ -18,11 +18,16 @@ class TabBarController: UITabBarController {
     }
     
     func setUpVCs() {
+        
+        let services = ServicesManager()
+        
+        let namesViewModel = NamesViewModel(services: services)
+        
         viewControllers = [
             createNavController(for: ImagesViewController(),
                                 title: NSLocalizedString("Images", comment: ""),
                                 image: UIImage(systemName: "photo.stack")!),
-            createNavController(for: NamesViewController(),
+            createNavController(for: NamesViewController(viewModel: namesViewModel),
                                 title: NSLocalizedString("Names", comment: ""),
                                 image: UIImage(systemName: "a.magnify")!)
         ]

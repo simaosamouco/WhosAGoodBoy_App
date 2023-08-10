@@ -23,6 +23,7 @@
 		C3E5AC652A84E62700BFD77A /* NamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC642A84E62700BFD77A /* NamesViewController.swift */; };
 		C3E5AC692A84F55A00BFD77A /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC682A84F55A00BFD77A /* Dog.swift */; };
 		C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC6A2A84F69D00BFD77A /* Breed.swift */; };
+		C3E5AC6E2A84FE5100BFD77A /* ServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC6D2A84FE5100BFD77A /* ServicesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		C3E5AC642A84E62700BFD77A /* NamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesViewController.swift; sourceTree = "<group>"; };
 		C3E5AC682A84F55A00BFD77A /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		C3E5AC6A2A84F69D00BFD77A /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
+		C3E5AC6D2A84FE5100BFD77A /* ServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesManager.swift; sourceTree = "<group>"; };
 		DF41771C880959B2DEB6F6FB /* Pods_SwordHealthChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2E8AE60644472B0E23C8322 /* Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 		C3E5AC2F2A84DC9B00BFD77A /* SwordHealthChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C3E5AC6C2A84FE3E00BFD77A /* Managers */,
 				C3E5AC672A84F54200BFD77A /* Data Models */,
 				C3E5AC662A84E63B00BFD77A /* View Controllers */,
 				C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */,
@@ -182,6 +185,14 @@
 			path = "Data Models";
 			sourceTree = "<group>";
 		};
+		C3E5AC6C2A84FE3E00BFD77A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C3E5AC6D2A84FE5100BFD77A /* ServicesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		C93A8F4F7B2B973BD87BF007 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +203,6 @@
 				B18972873EF59390FA5D94CD /* Pods-SwordHealthChallengeTests.debug.xcconfig */,
 				193C9B093AF9A1D667281107 /* Pods-SwordHealthChallengeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -434,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E5AC6E2A84FE5100BFD77A /* ServicesManager.swift in Sources */,
 				C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */,
 				C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */,
 				C3E5AC692A84F55A00BFD77A /* Dog.swift in Sources */,

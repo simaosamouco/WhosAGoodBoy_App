@@ -12,18 +12,16 @@ class NamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemCyan
-        // Do any additional setup after loading the view.
+        
+        //Testing getDogsList
+        let services = ServicesManager()
+        services.getDogsList(completion: { [weak self] result in
+            switch result {
+            case .success(let dogs):
+                print(dogs.count)
+            case .failure(let error):
+                print("Error retrieving Picture of the Day: \(error.localizedDescription)")
+            }
+        })
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

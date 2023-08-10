@@ -44,10 +44,12 @@ class NamesViewController: UIViewController {
     private func bindTableView() {
         tableView.rx.delegate.setForwardToDelegate(self, retainDelegate: false)
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dogCell")
-        viewModel.dogsList.bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: UITableViewCell.self)) { (row, dog, cell) in
-            if let dogg = dog.breeds.first {
-                cell.textLabel?.text = dogg?.name
+        tableView.register(DogNameTableViewCell.self, forCellReuseIdentifier: "dogCell")
+        viewModel.dogsList.bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: DogNameTableViewCell.self)) { (row, dog, cell) in
+            if let dog = dog.breeds.first {
+                cell.dogNameLabel.text = dog?.name
+                cell.groupLabel.text = dog?.breedGroup ?? "(not specified)"
+                cell.originLabel.text = dog?.origin ?? "(not specified)"
             }
         }.disposed(by: bag)
         
@@ -63,6 +65,6 @@ class NamesViewController: UIViewController {
 
 extension NamesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
 }

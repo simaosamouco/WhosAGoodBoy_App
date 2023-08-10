@@ -15,6 +15,9 @@
 		C3E5AC482A84DC9C00BFD77A /* SwordHealthChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC472A84DC9C00BFD77A /* SwordHealthChallengeTests.swift */; };
 		C3E5AC522A84DC9C00BFD77A /* SwordHealthChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC512A84DC9C00BFD77A /* SwordHealthChallengeUITests.swift */; };
 		C3E5AC542A84DC9C00BFD77A /* SwordHealthChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC532A84DC9C00BFD77A /* SwordHealthChallengeUITestsLaunchTests.swift */; };
+		C3E5AC612A84E4EA00BFD77A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC602A84E4EA00BFD77A /* TabBarController.swift */; };
+		C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */; };
+		C3E5AC652A84E62700BFD77A /* NamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC642A84E62700BFD77A /* NamesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		C3E5AC4D2A84DC9C00BFD77A /* SwordHealthChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwordHealthChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E5AC512A84DC9C00BFD77A /* SwordHealthChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordHealthChallengeUITests.swift; sourceTree = "<group>"; };
 		C3E5AC532A84DC9C00BFD77A /* SwordHealthChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordHealthChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C3E5AC602A84E4EA00BFD77A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
+		C3E5AC642A84E62700BFD77A /* NamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		C3E5AC2F2A84DC9B00BFD77A /* SwordHealthChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C3E5AC662A84E63B00BFD77A /* View Controllers */,
 				C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */,
 				C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */,
 				C3E5AC342A84DC9C00BFD77A /* ViewController.swift */,
@@ -122,6 +129,16 @@
 				C3E5AC532A84DC9C00BFD77A /* SwordHealthChallengeUITestsLaunchTests.swift */,
 			);
 			path = SwordHealthChallengeUITests;
+			sourceTree = "<group>";
+		};
+		C3E5AC662A84E63B00BFD77A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3E5AC642A84E62700BFD77A /* NamesViewController.swift */,
+				C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */,
+				C3E5AC602A84E4EA00BFD77A /* TabBarController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */,
+				C3E5AC652A84E62700BFD77A /* NamesViewController.swift in Sources */,
 				C3E5AC352A84DC9C00BFD77A /* ViewController.swift in Sources */,
+				C3E5AC612A84E4EA00BFD77A /* TabBarController.swift in Sources */,
 				C3E5AC312A84DC9B00BFD77A /* AppDelegate.swift in Sources */,
 				C3E5AC332A84DC9C00BFD77A /* SceneDelegate.swift in Sources */,
 			);

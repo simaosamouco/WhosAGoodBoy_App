@@ -174,8 +174,8 @@
 		C3E5AC662A84E63B00BFD77A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3E5AC752A861C0200BFD77A /* Images View */,
 				C3E5AC712A851EE700BFD77A /* Names List  */,
-				C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */,
 				C3E5AC602A84E4EA00BFD77A /* TabBarController.swift */,
 			);
 			path = "View Controllers";
@@ -213,6 +213,14 @@
 				C3E5AC732A8528FC00BFD77A /* DogNameTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C3E5AC752A861C0200BFD77A /* Images View */ = {
+			isa = PBXGroup;
+			children = (
+				C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */,
+			);
+			path = "Images View";
 			sourceTree = "<group>";
 		};
 		C93A8F4F7B2B973BD87BF007 /* Pods */ = {

@@ -12,19 +12,29 @@ import RxCocoa
 
 class ImagesViewController: UIViewController {
     
-    var collectionView: UICollectionView!
-    
     private lazy var collectionVieww: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = gridLayout
         layout.scrollDirection = .vertical
         var cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .white
         cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CellIdentifier")
-        cv.delegate = self
         cv.dataSource = self
-        
         return cv
     }()
+    
+    private lazy var button: UIButton = {
+        let bt = UIButton()
+        bt.setTitle("Switch Layout", for: .normal)
+        bt.backgroundColor = .black
+        bt.setTitleColor(.white, for: .normal)
+        bt.addTarget(self, action: #selector(switchLayoutPressed(_:)), for: .touchUpInside)
+        return bt
+    }()
+    
+    var listLayout = ListFlowLayout()
+    var gridLayout = GridFlowLayout()
+    
+    var isGridLayout: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +44,28 @@ class ImagesViewController: UIViewController {
     
     func setUpViews() {
         view.addSubview(collectionVieww)
+        view.addSubview(button)
         collectionVieww.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(button.snp.top)
         }
+        button.snp.makeConstraints { make in
+            make.top.equalTo(collectionVieww.snp.bottom)
+            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+    }
+    
+    @objc func switchLayoutPressed(_ sender: UIButton) {
+        isGridLayout.toggle()
+        let layout = isGridLayout ? gridLayout : listLayout
+        collectionVieww.collectionViewLayout.invalidateLayout()
+        collectionVieww.setCollectionViewLayout(layout, animated: true)
     }
 }
 
-extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ImagesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 50
     }
@@ -60,10 +83,5 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.layer.borderWidth = 0.5
         
         return cell
-    }
-    
-   
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
     }
 }

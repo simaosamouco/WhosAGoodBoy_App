@@ -23,26 +23,50 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     
     private lazy var button: UIButton = {
         let bt = UIButton()
-        bt.setTitle("Switch Layout", for: .normal)
+        bt.setImage(UIImage(systemName: "line.3.horizontal"), for: .normal)
+        bt.tintColor = .white
         bt.backgroundColor = .black
         bt.setTitleColor(.white, for: .normal)
         bt.addTarget(self, action: #selector(switchLayoutPressed(_:)), for: .touchUpInside)
+        bt.layer.cornerRadius = 25
+        bt.layer.shadowColor = UIColor.black.cgColor
+        bt.layer.shadowOpacity = 0.8
+        bt.layer.shadowOffset = CGSize(width: 5, height: 5)
+        bt.layer.shadowRadius = 5
+        bt.layer.cornerRadius = 25
+        bt.layer.borderWidth = 0.5
         return bt
     }()
     
     private lazy var orderButton: UIButton = {
         let bt = UIButton()
-        bt.setTitle("Order Alphabetically", for: .normal)
+        bt.setImage(UIImage(systemName: "textformat.abc"), for: .normal)
+        bt.tintColor = .white
         bt.backgroundColor = .black
         bt.setTitleColor(.white, for: .normal)
         bt.addTarget(self, action: #selector(orderPressed(_:)), for: .touchUpInside)
+        bt.layer.cornerRadius = 25
+        bt.layer.cornerRadius = 25
+        bt.layer.shadowColor = UIColor.black.cgColor
+        bt.layer.shadowOpacity = 0.8
+        bt.layer.shadowOffset = CGSize(width: 5, height: 5)
+        bt.layer.shadowRadius = 5
+        bt.layer.cornerRadius = 25
+        bt.layer.borderWidth = 0.5
         return bt
     }()
     
     var listLayout = ListFlowLayout()
     var gridLayout = GridFlowLayout()
     
-    var isGridLayout: Bool = true
+    var isGridLayout: Bool = true {
+        didSet {
+            self.button.setImage(self.isGridLayout ?
+                                 UIImage(systemName: "line.3.horizontal") :
+                                    UIImage(systemName: "square.grid.3x3"),
+                                 for: .normal)
+        }
+    }
 
     var viewModel: ImagesViewModel!
     
@@ -105,16 +129,16 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         collectionVieww.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
-            make.bottom.equalTo(button.snp.top)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         button.snp.makeConstraints { make in
-            make.top.equalTo(collectionVieww.snp.bottom)
-            make.leading.trailing.equalTo(collectionVieww)
-            make.bottom.equalTo(orderButton.snp.top)
+            make.width.height.equalTo(50)
+            make.bottom.equalTo(orderButton.snp.top).offset(-16)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
         orderButton.snp.makeConstraints { make in
-            make.top.equalTo(button.snp.bottom)
-            make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.width.height.equalTo(50)
+            make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
         
     }

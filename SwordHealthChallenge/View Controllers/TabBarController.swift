@@ -22,9 +22,10 @@ class TabBarController: UITabBarController {
         let services = ServicesManager()
         
         let namesViewModel = NamesViewModel(services: services)
+        let imagesViewModel = ImagesViewModel(services: services)
         
         viewControllers = [
-            createNavController(for: ImagesViewController(),
+            createNavController(for: ImagesViewController(viewModel: imagesViewModel),
                                 title: NSLocalizedString("Images", comment: ""),
                                 image: UIImage(systemName: "photo.stack")!),
             createNavController(for: NamesViewController(viewModel: namesViewModel),
@@ -43,16 +44,4 @@ class TabBarController: UITabBarController {
         rootViewController.navigationItem.title = title
         return navController
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

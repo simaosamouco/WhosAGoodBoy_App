@@ -17,8 +17,7 @@ class ImagesViewController: UIViewController {
         layout.scrollDirection = .vertical
         var cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .white
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CellIdentifier")
-        cv.dataSource = self
+        cv.showsVerticalScrollIndicator = false
         return cv
     }()
     
@@ -36,11 +35,57 @@ class ImagesViewController: UIViewController {
     
     var isGridLayout: Bool = true
 
+    var viewModel: ImagesViewModel!
+    
+    private let bag = DisposeBag()
+    
+    init(viewModel: ImagesViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+        self.viewModel.getDogsList()
         collectionVieww.register(DogImageCollectionViewCell.self, forCellWithReuseIdentifier: "dogCell")
         setUpViews()
+        setUpBindings() 
+    }
+    
+    func setUpBindings() {
+        viewModel.dogsList
+            .bind(to: collectionVieww.rx.items(cellIdentifier: "dogCell", cellType: DogImageCollectionViewCell.self)) { [weak self] _, dog, cell in
+                //guard let self = self else { return } // Capture self strongly
+                
+                cell.backgroundColor = .systemBackground
+                cell.layer.cornerRadius = 15
+                cell.layer.shadowColor = UIColor.black.cgColor
+                cell.layer.shadowOpacity = 0.5
+                cell.layer.shadowOffset = CGSize(width: 5, height: 5)
+                cell.layer.shadowRadius = 5
+                cell.layer.cornerRadius = 5
+                cell.layer.borderWidth = 0.5
+                
+                self?.viewModel.fetchImageFromURL(from: URL(string: dog.url)!){ image in
+                    if let image = image {
+                        DispatchQueue.main.async {
+                            cell.imageView.image = image
+                        }
+                    } else {
+                        // Failed
+                    }
+                }
+                
+                if let dogBreed = dog.breeds.first {
+                    cell.nameLabel.text = dogBreed?.name
+                }
+            }
+            .disposed(by: bag)
     }
     
     func setUpViews() {
@@ -63,28 +108,5 @@ class ImagesViewController: UIViewController {
         let layout = isGridLayout ? gridLayout : listLayout
         collectionVieww.collectionViewLayout.invalidateLayout()
         collectionVieww.setCollectionViewLayout(layout, animated: true)
-    }
-}
-
-extension ImagesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dogCell", for: indexPath) as! DogImageCollectionViewCell
-        
-        cell.backgroundColor = .systemRed
-        cell.layer.cornerRadius = 15
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.shadowOffset = CGSize(width: 5, height: 5)
-        cell.layer.shadowRadius = 5
-        cell.layer.cornerRadius = 5
-        cell.layer.borderWidth = 0.5
-        cell.nameLabel.text = "Border Collie"
-        cell.imageView.image = UIImage(systemName: "heart.fill")
-        
-        return cell
     }
 }

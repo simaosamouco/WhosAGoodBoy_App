@@ -29,6 +29,7 @@
 		C3E5AC782A8625F200BFD77A /* GridFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC772A8625F200BFD77A /* GridFlowLayout.swift */; };
 		C3E5AC7A2A86260400BFD77A /* ListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC792A86260400BFD77A /* ListFlowLayout.swift */; };
 		C3E5AC7C2A8656F000BFD77A /* DogImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC7B2A8656F000BFD77A /* DogImageCollectionViewCell.swift */; };
+		C3E5AC7E2A86639600BFD77A /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC7D2A86639600BFD77A /* ImagesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		C3E5AC772A8625F200BFD77A /* GridFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFlowLayout.swift; sourceTree = "<group>"; };
 		C3E5AC792A86260400BFD77A /* ListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFlowLayout.swift; sourceTree = "<group>"; };
 		C3E5AC7B2A8656F000BFD77A /* DogImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		C3E5AC7D2A86639600BFD77A /* ImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModel.swift; sourceTree = "<group>"; };
 		DF41771C880959B2DEB6F6FB /* Pods_SwordHealthChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2E8AE60644472B0E23C8322 /* Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallenge_SwordHealthChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -225,8 +227,9 @@
 		C3E5AC752A861C0200BFD77A /* Images View */ = {
 			isa = PBXGroup;
 			children = (
-				C3E5AC762A8625C500BFD77A /* FlowLayout */,
 				C3E5AC622A84E61200BFD77A /* ImagesViewController.swift */,
+				C3E5AC7D2A86639600BFD77A /* ImagesViewModel.swift */,
+				C3E5AC762A8625C500BFD77A /* FlowLayout */,
 			);
 			path = "Images View";
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				C3E5AC6E2A84FE5100BFD77A /* ServicesManager.swift in Sources */,
 				C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */,
 				C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */,
+				C3E5AC7E2A86639600BFD77A /* ImagesViewModel.swift in Sources */,
 				C3E5AC782A8625F200BFD77A /* GridFlowLayout.swift in Sources */,
 				C3E5AC692A84F55A00BFD77A /* Dog.swift in Sources */,
 				C3E5AC742A8528FC00BFD77A /* DogNameTableViewCell.swift in Sources */,

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class ImagesViewController: UIViewController {
+class ImagesViewController: UIViewController, UICollectionViewDelegate {
     
     private lazy var collectionVieww: UICollectionView = {
         let layout = gridLayout
@@ -27,6 +27,15 @@ class ImagesViewController: UIViewController {
         bt.backgroundColor = .black
         bt.setTitleColor(.white, for: .normal)
         bt.addTarget(self, action: #selector(switchLayoutPressed(_:)), for: .touchUpInside)
+        return bt
+    }()
+    
+    private lazy var orderButton: UIButton = {
+        let bt = UIButton()
+        bt.setTitle("Order Alphabetically", for: .normal)
+        bt.backgroundColor = .black
+        bt.setTitleColor(.white, for: .normal)
+        bt.addTarget(self, action: #selector(orderPressed(_:)), for: .touchUpInside)
         return bt
     }()
     
@@ -53,8 +62,9 @@ class ImagesViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         self.viewModel.getDogsList()
         collectionVieww.register(DogImageCollectionViewCell.self, forCellWithReuseIdentifier: "dogCell")
+        collectionVieww.delegate = self
         setUpViews()
-        setUpBindings() 
+        setUpBindings()
     }
     
     func setUpBindings() {
@@ -91,6 +101,7 @@ class ImagesViewController: UIViewController {
     func setUpViews() {
         view.addSubview(collectionVieww)
         view.addSubview(button)
+        view.addSubview(orderButton)
         collectionVieww.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
@@ -98,6 +109,11 @@ class ImagesViewController: UIViewController {
         }
         button.snp.makeConstraints { make in
             make.top.equalTo(collectionVieww.snp.bottom)
+            make.leading.trailing.equalTo(collectionVieww)
+            make.bottom.equalTo(orderButton.snp.top)
+        }
+        orderButton.snp.makeConstraints { make in
+            make.top.equalTo(button.snp.bottom)
             make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -109,4 +125,21 @@ class ImagesViewController: UIViewController {
         collectionVieww.collectionViewLayout.invalidateLayout()
         collectionVieww.setCollectionViewLayout(layout, animated: true)
     }
+    
+    @objc func orderPressed(_ sender: UIButton) {
+        viewModel.orderListAlphabetically()
+    }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//        let distanceFromBottom = contentHeight - offsetY
+//
+//        if distanceFromBottom < scrollView.bounds.height {
+//            //fetchMoreData()
+//        }
+//    }
+    
+    
+    
 }

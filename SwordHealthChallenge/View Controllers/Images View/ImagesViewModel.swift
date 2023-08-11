@@ -11,12 +11,32 @@ import RxCocoa
 
 class ImagesViewModel {
     
+    private let bag = DisposeBag()
+    
     let dogsList = BehaviorRelay<[Dog]>(value: [])
+    
+    var isSortedAlphabetically: Bool = false
     
     let services: ServicesManagerProtocol
     
     init(services: ServicesManagerProtocol) {
         self.services = services
+    }
+    
+    func orderListAlphabetically() {
+        if !isSortedAlphabetically {
+            let dogsd = dogsList.value
+            
+            let sortedDogs = dogsd.map { dogs in
+                return dogsd.sorted { (dog1, dog2) -> Bool in
+                    let breedName1 = dog1.breeds.first??.name ?? ""
+                    let breedName2 = dog2.breeds.first??.name ?? ""
+                    return breedName1.localizedCaseInsensitiveCompare(breedName2) == .orderedAscending
+                }
+            }
+            dogsList.accept(sortedDogs.first!)
+            isSortedAlphabetically.toggle()
+        }
     }
     
     func getDogsList() {

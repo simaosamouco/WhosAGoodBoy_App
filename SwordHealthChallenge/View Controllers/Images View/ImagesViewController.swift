@@ -39,6 +39,7 @@ class ImagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+        collectionVieww.register(DogImageCollectionViewCell.self, forCellWithReuseIdentifier: "dogCell")
         setUpViews()
     }
     
@@ -71,7 +72,7 @@ extension ImagesViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dogCell", for: indexPath) as! DogImageCollectionViewCell
         
         cell.backgroundColor = .systemRed
         cell.layer.cornerRadius = 15
@@ -81,6 +82,8 @@ extension ImagesViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.layer.shadowRadius = 5
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 0.5
+        cell.nameLabel.text = "Border Collie"
+        cell.imageView.image = UIImage(systemName: "heart.fill")
         
         return cell
     }

@@ -11,8 +11,8 @@ import RxCocoa
 
 class NamesViewModel {
     
-    let dogsList = BehaviorRelay<[Dog]>(value: [])
-    let filteredDogsList = BehaviorRelay<[Dog]>(value: [])
+    let dogsProfileList = BehaviorRelay<[DogProfile]>(value: [])
+    let filteredDogsList = BehaviorRelay<[DogProfile]>(value: [])
     let searchQuery = BehaviorRelay<String>(value: "")
     
     private let bag = DisposeBag()
@@ -22,15 +22,13 @@ class NamesViewModel {
     init(services: ServicesManagerProtocol) {
         self.services = services
         
-        Observable.combineLatest(dogsList, searchQuery)
+        Observable.combineLatest(dogsProfileList, searchQuery)
             .map { array, query in
                 if query == "" {
                     return array
                 } else {
                     return array.filter { dog in
-                        if let dog = dog.breeds.first {
-                            return dog.name!.lowercased().contains(query.lowercased())
-                        } else { return false }
+                        return dog.breedName.lowercased().contains(query.lowercased())
                     }
                 }
             }
@@ -43,7 +41,8 @@ class NamesViewModel {
             switch result {
             case .success(let dogs):
                 print(dogs.count)
-                self?.dogsList.accept(dogs)
+                let dogProfiles = dogs.map { DogProfile(dog: $0) }
+                self?.dogsProfileList.accept(dogProfiles)
             case .failure(let error):
                 print("Error retrieving Dogs List: \(error.localizedDescription)")
             }

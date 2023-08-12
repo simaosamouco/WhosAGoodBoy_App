@@ -119,13 +119,21 @@ class DogDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        setUpViewsVertical()
-        self.imageView.image = viewModel.dogProfile.image
+        
+        if let image = viewModel.dogProfile.image {
+            self.imageView.image = image
+            setUpViews()
+        } else {
+            viewModel.fetchImageFromURL(completion: { [weak self] image in
+                self?.imageView.image = image
+                self?.setUpViews()
+            })
+        }
+        
         self.nameLabel.text = viewModel.dogProfile.breedName
-        print(Double((viewModel.dogProfile.image?.size.height)!)/Double((viewModel.dogProfile.image?.size.width)!))
     }
     
-    func setUpViewsVertical() {
+    func setUpViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(imageView)

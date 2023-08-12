@@ -91,6 +91,10 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         setUpBindings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        collectionVieww.reloadData()
+    }
+    
     func setUpBindings() {
         viewModel.dogsProfileList
             .bind(to: collectionVieww.rx.items(cellIdentifier: "dogCell", cellType: DogImageCollectionViewCell.self)) { [weak self] index, dog, cell in

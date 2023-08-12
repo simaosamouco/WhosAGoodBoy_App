@@ -13,7 +13,7 @@ class ImagesViewModel {
     
     private let bag = DisposeBag()
     
-    let dogsList = BehaviorRelay<[Dog]>(value: [])
+    let dogsProfileList = BehaviorRelay<[DogProfile]>(value: [])
     
     var isSortedAlphabetically: Bool = false
     
@@ -25,16 +25,16 @@ class ImagesViewModel {
     
     func orderListAlphabetically() {
         if !isSortedAlphabetically {
-            let dogsd = dogsList.value
+            let dogsd = dogsProfileList.value
             
             let sortedDogs = dogsd.map { dogs in
                 return dogsd.sorted { (dog1, dog2) -> Bool in
-                    let breedName1 = dog1.breeds.first??.name ?? ""
-                    let breedName2 = dog2.breeds.first??.name ?? ""
+                    let breedName1 = dog1.breedName
+                    let breedName2 = dog2.breedName
                     return breedName1.localizedCaseInsensitiveCompare(breedName2) == .orderedAscending
                 }
             }
-            dogsList.accept(sortedDogs.first!)
+            dogsProfileList.accept(sortedDogs.first!)
             isSortedAlphabetically.toggle()
         }
     }
@@ -43,15 +43,25 @@ class ImagesViewModel {
         services.getDogsList(completion: { [weak self] result in
             switch result {
             case .success(let dogs):
-                print(dogs.count)
-                self?.dogsList.accept(dogs)
+                let dogProfiles = dogs.map { DogProfile(dog: $0) }
+                self?.fetchImagesForDogProfiles(dogProfiles)
             case .failure(let error):
                 print("Error retrieving Dogs List: \(error.localizedDescription)")
             }
         })
     }
     
-    func fetchImageFromURL(from url: URL, completion: @escaping (UIImage?) -> Void) {
+    private func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile]) {
+        var dogProfilesAux = dogProfiles
+        for (index, dog) in dogProfilesAux.enumerated() {
+            self.fetchImageFromURL(from: URL(string: dog.imageUrl)!, completion: { image in
+                dogProfilesAux[index].image = image
+                self.dogsProfileList.accept(dogProfilesAux)
+            })
+        }
+    }
+   
+    private func fetchImageFromURL(from url: URL, completion: @escaping (UIImage?) -> Void) {
         services.downloadImage(from: url, completion: completion)
     }
 }

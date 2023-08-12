@@ -62,9 +62,9 @@ class NamesViewController: UIViewController {
         viewModel.filteredDogsList
             .bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: DogNameTableViewCell.self)) { _, dog, cell in
                 if let dog = dog.breeds.first {
-                    cell.dogNameLabel.text = dog?.name
-                    cell.groupLabel.text = dog?.breedGroup ?? "(not specified)"
-                    cell.originLabel.text = dog?.origin ?? "(not specified)"
+                    cell.dogNameLabel.text = dog.name
+                    cell.groupLabel.text = dog.breedGroup ?? "(not specified)"
+                    cell.originLabel.text = dog.origin ?? "(not specified)"
                 }
             }
             .disposed(by: bag)

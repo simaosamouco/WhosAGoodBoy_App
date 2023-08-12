@@ -8,7 +8,7 @@
 import Foundation
 
 struct Dog: Codable {
-    let breeds: [Breed?]
+    let breeds: [Breed]
     let id: String
     let url: String
     let width: Int

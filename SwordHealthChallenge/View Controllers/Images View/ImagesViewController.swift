@@ -92,8 +92,8 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func setUpBindings() {
-        viewModel.dogsList
-            .bind(to: collectionVieww.rx.items(cellIdentifier: "dogCell", cellType: DogImageCollectionViewCell.self)) { [weak self] _, dog, cell in
+        viewModel.dogsProfileList
+            .bind(to: collectionVieww.rx.items(cellIdentifier: "dogCell", cellType: DogImageCollectionViewCell.self)) { [weak self] index, dog, cell in
                 //guard let self = self else { return } // Capture self strongly
                 
                 cell.backgroundColor = .systemBackground
@@ -105,19 +105,8 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                 cell.layer.cornerRadius = 5
                 cell.layer.borderWidth = 0.5
                 
-                self?.viewModel.fetchImageFromURL(from: URL(string: dog.url)!){ image in
-                    if let image = image {
-                        DispatchQueue.main.async {
-                            cell.imageView.image = image
-                        }
-                    } else {
-                        // Failed
-                    }
-                }
-                
-                if let dogBreed = dog.breeds.first {
-                    cell.nameLabel.text = dogBreed?.name
-                }
+                cell.nameLabel.text = dog.breedName
+                cell.imageView.image = dog.image
             }
             .disposed(by: bag)
     }

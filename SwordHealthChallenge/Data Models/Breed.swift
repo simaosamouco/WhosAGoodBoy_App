@@ -10,7 +10,7 @@ struct Breed: Codable {
     let weight: Weight
     let height: Height
     let id: Int
-    let name: String
+    let name: String?
     let countryCode: String?
     let bredFor: String?
     let breedGroup: String?

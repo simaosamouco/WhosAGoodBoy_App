@@ -29,7 +29,7 @@ class NamesViewModel {
                 } else {
                     return array.filter { dog in
                         if let dog = dog.breeds.first {
-                            return dog!.name.lowercased().contains(query.lowercased())
+                            return dog.name!.lowercased().contains(query.lowercased())
                         } else { return false }
                     }
                 }

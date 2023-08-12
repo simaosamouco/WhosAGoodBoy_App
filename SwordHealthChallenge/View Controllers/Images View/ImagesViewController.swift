@@ -12,6 +12,21 @@ import RxCocoa
 
 class ImagesViewController: UIViewController, UICollectionViewDelegate {
     
+    private lazy var spinnerView: UIView = {
+        let ui = UIView()
+        let spinner = UIActivityIndicatorView()
+        spinner.center = ui.center
+        
+        ui.addSubview(spinner)
+        spinner.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+        spinner.startAnimating()
+        return ui
+    }()
+    
+    private var spinnerViewHeight: Constraint?
+    
     private lazy var collectionVieww: UICollectionView = {
         let layout = gridLayout
         layout.scrollDirection = .vertical
@@ -67,6 +82,8 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                                  for: .normal)
         }
     }
+    //This variable is need because when the collection view flow layout changes it triggers pagination
+    var isChangingLayout = false
 
     var viewModel: ImagesViewModel!
     
@@ -89,6 +106,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         collectionVieww.delegate = self
         setUpViews()
         setUpBindings()
+        spinnerView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,13 +144,15 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func setUpViews() {
+        view.addSubview(spinnerView)
         view.addSubview(collectionVieww)
         view.addSubview(button)
         view.addSubview(orderButton)
+        
         collectionVieww.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(spinnerView.snp.top)
         }
         button.snp.makeConstraints { make in
             make.width.height.equalTo(50)
@@ -143,29 +163,40 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
             make.width.height.equalTo(50)
             make.bottom.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
-        
+        spinnerView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(collectionVieww.snp.bottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            spinnerViewHeight = make.height.equalTo(0).constraint
+        }
     }
     
     @objc func switchLayoutPressed(_ sender: UIButton) {
         isGridLayout.toggle()
         let layout = isGridLayout ? gridLayout : listLayout
+        isChangingLayout = true
         collectionVieww.collectionViewLayout.invalidateLayout()
         collectionVieww.setCollectionViewLayout(layout, animated: true)
+        self.isChangingLayout = false
     }
     
     @objc func orderPressed(_ sender: UIButton) {
         viewModel.orderListAlphabetically()
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        let distanceFromBottom = contentHeight - offsetY
-//
-//        if distanceFromBottom < scrollView.bounds.height {
-//            //fetchMoreData()
-//        }
-//    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isChangingLayout {
+                return
+            }
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let distanceFromBottom = contentHeight - offsetY
+        
+        if distanceFromBottom + 50 < scrollView.bounds.height && viewModel.dogsProfileList.value.count != 0{
+            self.spinnerView.isHidden = false
+            self.spinnerViewHeight?.update(offset: 50)
+        }
+    }
     
     
     

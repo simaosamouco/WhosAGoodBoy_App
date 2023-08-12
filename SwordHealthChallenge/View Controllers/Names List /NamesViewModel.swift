@@ -15,6 +15,11 @@ class NamesViewModel {
     let filteredDogsList = BehaviorRelay<[DogProfile]>(value: [])
     let searchQuery = BehaviorRelay<String>(value: "")
     
+    private let navigateToDetailView = PublishSubject<DogDetailViewController>()
+    var actionNavigateToDetailView: Observable<DogDetailViewController> {
+        return navigateToDetailView.asObservable()
+    }
+    
     private let bag = DisposeBag()
     
     let services: ServicesManagerProtocol
@@ -47,6 +52,12 @@ class NamesViewModel {
                 print("Error retrieving Dogs List: \(error.localizedDescription)")
             }
         })
+    }
+    
+    func cellSelected(_ dogProfile: DogProfile) {
+        let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services)
+        let detailVC = DogDetailViewController(viewModel: detailViewModel)
+        navigateToDetailView.onNext(detailVC)
     }
     
 }

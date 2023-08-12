@@ -14,6 +14,10 @@ class ImagesViewModel {
     private let bag = DisposeBag()
     
     let dogsProfileList = BehaviorRelay<[DogProfile]>(value: [])
+    private let navigateToDetailView = PublishSubject<DogDetailViewController>()
+    var actionNavigateToDetailView: Observable<DogDetailViewController> {
+        return navigateToDetailView.asObservable()
+    }
     
     var isSortedAlphabetically: Bool = false
     
@@ -63,5 +67,11 @@ class ImagesViewModel {
    
     private func fetchImageFromURL(from url: URL, completion: @escaping (UIImage?) -> Void) {
         services.downloadImage(from: url, completion: completion)
+    }
+    
+    func cellSelected(_ dogProfile: DogProfile) {
+        let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services)
+        let detailVC = DogDetailViewController(viewModel: detailViewModel)
+        navigateToDetailView.onNext(detailVC)
     }
 }

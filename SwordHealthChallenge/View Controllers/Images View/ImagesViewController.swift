@@ -109,6 +109,16 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                 cell.imageView.image = dog.image
             }
             .disposed(by: bag)
+        collectionVieww.rx.modelSelected(DogProfile.self).subscribe(onNext: { dogProfile in
+            print(dogProfile.breedName)
+            self.viewModel.cellSelected(dogProfile)
+        }).disposed(by: bag)
+        
+        viewModel.actionNavigateToDetailView
+                    .subscribe(onNext: { [weak self] vc in
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    })
+                    .disposed(by: bag)
     }
     
     func setUpViews() {

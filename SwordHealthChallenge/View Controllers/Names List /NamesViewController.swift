@@ -66,6 +66,17 @@ class NamesViewController: UIViewController {
                 cell.originLabel.text = dog.origin
             }
             .disposed(by: bag)
+        
+        tableView.rx.modelSelected(DogProfile.self).subscribe(onNext: { dogProfile in
+            print(dogProfile.breedName)
+            self.viewModel.cellSelected(dogProfile)
+        }).disposed(by: bag)
+        
+        viewModel.actionNavigateToDetailView
+                    .subscribe(onNext: { [weak self] vc in
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    })
+                    .disposed(by: bag)
     }
     
     private func setUpViews() {

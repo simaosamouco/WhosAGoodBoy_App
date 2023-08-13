@@ -12,6 +12,12 @@ import RxCocoa
 
 class ImagesViewController: UIViewController, UICollectionViewDelegate {
     
+    private lazy var spinner: SpinningLoaderView = {
+        let view = SpinningLoaderView()
+        view.startAnimating()
+        return view
+    }()
+    
     private lazy var spinnerView: UIView = {
         let ui = UIView()
         let spinner = UIActivityIndicatorView()
@@ -149,6 +155,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                             self?.spinnerView.isHidden = false
                             self?.spinnerViewHeight?.update(offset: 50)
                         } else {
+                            self?.spinner.isHidden = true
                             self?.spinnerView.isHidden = true
                             self?.spinnerViewHeight?.update(offset: 0)
                         }
@@ -161,6 +168,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         view.addSubview(collectionVieww)
         view.addSubview(button)
         view.addSubview(orderButton)
+        view.addSubview(spinner)
         
         collectionVieww.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
@@ -181,6 +189,10 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
             make.top.equalTo(collectionVieww.snp.bottom)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             spinnerViewHeight = make.height.equalTo(0).constraint
+        }
+        
+        spinner.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     

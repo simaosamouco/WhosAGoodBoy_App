@@ -12,6 +12,12 @@ import RxCocoa
 
 class NamesViewController: UIViewController {
     
+    private lazy var spinner: SpinningLoaderView = {
+        let view = SpinningLoaderView()
+        view.startAnimating()
+        return view
+    }()
+    
     private lazy var tableView: UITableView = {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false
@@ -60,16 +66,17 @@ class NamesViewController: UIViewController {
             .disposed(by: bag)
         
         viewModel.filteredDogsList
-            .bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: DogNameTableViewCell.self)) { _, dog, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: DogNameTableViewCell.self)) { [weak self] _, dog, cell in
+                self?.spinner.isHidden = true
                 cell.dogNameLabel.text = dog.breedName
                 cell.groupLabel.text = dog.breedGroup
                 cell.originLabel.text = dog.origin
             }
             .disposed(by: bag)
         
-        tableView.rx.modelSelected(DogProfile.self).subscribe(onNext: { dogProfile in
+        tableView.rx.modelSelected(DogProfile.self).subscribe(onNext: { [weak self] dogProfile in
             print(dogProfile.breedName)
-            self.viewModel.cellSelected(dogProfile)
+            self?.viewModel.cellSelected(dogProfile)
         }).disposed(by: bag)
         
         viewModel.actionNavigateToDetailView
@@ -82,6 +89,7 @@ class NamesViewController: UIViewController {
     private func setUpViews() {
         view.addSubview(tableView)
         view.addSubview(searchBar)
+        view.addSubview(spinner)
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
@@ -91,6 +99,10 @@ class NamesViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(searchBar.snp.bottom).offset(8)
+        }
+        
+        spinner.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

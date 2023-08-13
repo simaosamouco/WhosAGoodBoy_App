@@ -131,6 +131,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                 cell.imageView.image = dog.image
             }
             .disposed(by: bag)
+        
         collectionVieww.rx.modelSelected(DogProfile.self).subscribe(onNext: { dogProfile in
             print(dogProfile.breedName)
             self.viewModel.cellSelected(dogProfile)
@@ -139,6 +140,18 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         viewModel.actionNavigateToDetailView
                     .subscribe(onNext: { [weak self] vc in
                         self?.navigationController?.pushViewController(vc, animated: true)
+                    })
+                    .disposed(by: bag)
+        
+        viewModel.isFetching
+                    .subscribe(onNext: { [weak self] isFetching in
+                        if isFetching {
+                            self?.spinnerView.isHidden = false
+                            self?.spinnerViewHeight?.update(offset: 50)
+                        } else {
+                            self?.spinnerView.isHidden = true
+                            self?.spinnerViewHeight?.update(offset: 0)
+                        }
                     })
                     .disposed(by: bag)
     }
@@ -192,12 +205,8 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let distanceFromBottom = contentHeight - offsetY
         
-        if distanceFromBottom + 50 < scrollView.bounds.height && viewModel.dogsProfileList.value.count != 0{
-            self.spinnerView.isHidden = false
-            self.spinnerViewHeight?.update(offset: 50)
+        if distanceFromBottom + 100  < scrollView.bounds.height && viewModel.dogsProfileList.value.count != 0 {
+            self.viewModel.getDogsList()
         }
     }
-    
-    
-    
 }

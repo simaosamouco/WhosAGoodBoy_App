@@ -41,14 +41,13 @@ class ImagesViewModel {
     func getDogsList() {
         isFetchingRelay.onNext(true)
         services.getDogsList { [weak self] result in
+            self?.isFetchingRelay.onNext(false)
             switch result {
             case .success(let dogs):
-                self?.isFetchingRelay.onNext(false)
                 let dogProfiles = dogs.map { DogProfile(dog: $0) }
                 self?.fetchImagesForDogProfiles(dogProfiles)
                 self?.isSortedAlphabetically = false
             case .failure(let error):
-                self?.isFetchingRelay.onNext(false)
                 print("Error retrieving Dogs List: \(error.localizedDescription)")
             }
         }
@@ -78,15 +77,17 @@ class ImagesViewModel {
     
     // MARK: - Private Methods
     
-    private func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile]) {
+    func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile]) {
         var dogProfilesAux = dogProfiles
         for (index, dog) in dogProfilesAux.enumerated() {
-            self.fetchImageFromURL(from: URL(string: dog.imageUrl)!, completion: { image in
-                dogProfilesAux[index].image = image
-                var currentValues = self.dogsProfileList.value
-                currentValues.append(dogProfilesAux[index])
-                self.dogsProfileList.accept(currentValues)
-            })
+            if let url = URL(string: dog.imageUrl) {
+                self.fetchImageFromURL(from: url, completion: { image in
+                    dogProfilesAux[index].image = image
+                    var currentValues = self.dogsProfileList.value
+                    currentValues.append(dogProfilesAux[index])
+                    self.dogsProfileList.accept(currentValues)
+                })
+            } 
         }
     }
    

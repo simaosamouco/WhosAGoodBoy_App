@@ -83,4 +83,30 @@ final class ImagesViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.dogsProfileList.value.last?.breedName, mockDogProfile2.breedName)
     }
     
+    func testGetDogsList() {
+        let breed = Breed(id: 01,
+                          name: "Mock Name",
+                          breedGroup: "Mock Group",
+                          origin: "Mock Origin",
+                          temperament: "Mock temperament",
+                          weight: Weight(imperial: "200", metric: "200"),
+                          height: Height(imperial: "100", metric: "100"))
+        
+        let dog = Dog(breeds: [breed], id: "01", url: "www.mockurl.com", width: 200, height: 200)
+        
+        mockServices.stubDogsList = .success([dog])
+        
+        var capturedDogProfiles: [DogProfile]?
+        var capturedError: Error?
+        
+        viewModel.getDogsListFromService { dogProfiles, error in
+            capturedDogProfiles = dogProfiles
+            capturedError = error
+        }
+        
+        XCTAssertEqual(capturedDogProfiles?.count, 1)
+        XCTAssertEqual(capturedDogProfiles?.first?.breedName, "Mock Name")
+        XCTAssertNil(capturedError)
+    }
+    
 }

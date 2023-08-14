@@ -17,4 +17,12 @@ struct Dog: Codable {
     private enum CodingKeys: String, CodingKey {
             case id, url, width, height, breeds
         }
+    
+    init(breeds: [Breed], id: String, url: String, width: Int, height: Int) {
+        self.breeds = breeds
+        self.id = id
+        self.url = url
+        self.width = width
+        self.height = height
+    }
 }

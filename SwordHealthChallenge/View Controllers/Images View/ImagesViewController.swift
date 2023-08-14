@@ -113,7 +113,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         setupUI()
         setupBindings()
-        viewModel.getDogsList()
+        viewModel.getDogs()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -232,7 +232,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         let distanceFromBottom = contentHeight - offsetY
         
         if distanceFromBottom + 100  < scrollView.bounds.height && viewModel.dogsProfileList.value.count != 0 {
-            self.viewModel.getDogsList()
+            self.viewModel.getDogs()
         }
     }
 }

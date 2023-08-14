@@ -38,16 +38,27 @@ class ImagesViewModel {
     
     // MARK: - Public Methods
     
-    func getDogsList() {
+    func getDogs() {
+        getDogsListFromService { dogProfiles, error in
+            if let dogProfiles = dogProfiles {
+                self.fetchImagesForDogProfiles(dogProfiles)
+                self.isSortedAlphabetically = false
+            } else if let error = error {
+                print("Error fetching dogProfiles: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getDogsListFromService(completion: @escaping ([DogProfile]?, Error?) -> Void) {
         isFetchingRelay.onNext(true)
         services.getDogsList { [weak self] result in
             self?.isFetchingRelay.onNext(false)
             switch result {
             case .success(let dogs):
                 let dogProfiles = dogs.map { DogProfile(dog: $0) }
-                self?.fetchImagesForDogProfiles(dogProfiles)
-                self?.isSortedAlphabetically = false
+                completion(dogProfiles, nil)
             case .failure(let error):
+                completion(nil, error)
                 print("Error retrieving Dogs List: \(error.localizedDescription)")
             }
         }
@@ -74,8 +85,6 @@ class ImagesViewModel {
             isSortedAlphabetically.toggle()
         }
     }
-    
-    // MARK: - Private Methods
     
     func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile]) {
         var dogProfilesAux = dogProfiles

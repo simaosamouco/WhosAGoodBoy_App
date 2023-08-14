@@ -12,6 +12,8 @@ import RxCocoa
 
 class NamesViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private lazy var spinner: SpinningLoaderView = {
         let view = SpinningLoaderView()
         view.startAnimating()
@@ -35,8 +37,9 @@ class NamesViewController: UIViewController {
     }()
     
     private let bag = DisposeBag()
-    
     var viewModel: NamesViewModel!
+    
+    // MARK: - Initializers
     
     init(viewModel: NamesViewModel) {
         self.viewModel = viewModel
@@ -47,15 +50,20 @@ class NamesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel.getDogsList()
-        setUpViews()
+        setupUI()
         bindTableView()
-        self.view.backgroundColor = .systemBackground
+        viewModel.getDogsList()
+        view.backgroundColor = .systemBackground
     }
     
+    // MARK: - Binding
+    
     private func bindTableView() {
+        
         tableView.rx.delegate.setForwardToDelegate(self, retainDelegate: false)
         
         tableView.register(DogNameTableViewCell.self, forCellReuseIdentifier: "dogCell")
@@ -74,28 +82,34 @@ class NamesViewController: UIViewController {
             }
             .disposed(by: bag)
         
-        tableView.rx.modelSelected(DogProfile.self).subscribe(onNext: { [weak self] dogProfile in
-            print(dogProfile.breedName)
-            self?.viewModel.cellSelected(dogProfile)
-        }).disposed(by: bag)
+        tableView.rx.modelSelected(DogProfile.self)
+            .subscribe(onNext: { [weak self] dogProfile in
+                print(dogProfile.breedName)
+                self?.viewModel.cellSelected(dogProfile)
+            })
+            .disposed(by: bag)
         
         viewModel.actionNavigateToDetailView
-                    .subscribe(onNext: { [weak self] vc in
-                        self?.navigationController?.pushViewController(vc, animated: true)
-                    })
-                    .disposed(by: bag)
+            .subscribe(onNext: { [weak self] vc in
+                self?.navigationController?.pushViewController(vc, animated: true)
+            })
+            .disposed(by: bag)
     }
     
-    private func setUpViews() {
-        view.addSubview(tableView)
+    // MARK: - UI Setup
+    
+    private func setupUI() {
         view.addSubview(searchBar)
+        view.addSubview(tableView)
         view.addSubview(spinner)
+        
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.bottom.equalTo(tableView.snp.top).offset(-8)
         }
+        
         tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(searchBar.snp.bottom).offset(8)
@@ -106,6 +120,8 @@ class NamesViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UITableViewDelegate Extension
 
 extension NamesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

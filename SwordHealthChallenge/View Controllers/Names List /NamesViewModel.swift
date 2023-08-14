@@ -11,6 +11,8 @@ import RxCocoa
 
 class NamesViewModel {
     
+    // MARK: - Properties
+    
     let dogsProfileList = BehaviorRelay<[DogProfile]>(value: [])
     let filteredDogsList = BehaviorRelay<[DogProfile]>(value: [])
     let searchQuery = BehaviorRelay<String>(value: "")
@@ -21,15 +23,16 @@ class NamesViewModel {
     }
     
     private let bag = DisposeBag()
-    
     let services: ServicesManagerProtocol
+    
+    // MARK: - Initialization
     
     init(services: ServicesManagerProtocol) {
         self.services = services
         
         Observable.combineLatest(dogsProfileList, searchQuery)
             .map { array, query in
-                if query == "" {
+                if query.isEmpty {
                     return array
                 } else {
                     return array.filter { dog in
@@ -41,8 +44,10 @@ class NamesViewModel {
             .disposed(by: bag)
     }
     
+    // MARK: - Methods
+    
     func getDogsList() {
-        services.getDogsList(completion: { [weak self] result in
+        services.getDogsList { [weak self] result in
             switch result {
             case .success(let dogs):
                 print(dogs.count)
@@ -51,7 +56,7 @@ class NamesViewModel {
             case .failure(let error):
                 print("Error retrieving Dogs List: \(error.localizedDescription)")
             }
-        })
+        }
     }
     
     func cellSelected(_ dogProfile: DogProfile) {
@@ -59,5 +64,4 @@ class NamesViewModel {
         let detailVC = DogDetailViewController(viewModel: detailViewModel)
         navigateToDetailView.onNext(detailVC)
     }
-    
 }

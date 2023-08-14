@@ -31,7 +31,7 @@ final class ImagesViewModelTests: XCTestCase {
        
         let mockImage = UIImage(named: "dog_icon")
         
-        mockServices.stubImageFetch = mockImage
+        mockServices.stubImageFetch = .success(mockImage)
         
         viewModel.fetchImagesForDogProfiles([mockDogProfile])
         

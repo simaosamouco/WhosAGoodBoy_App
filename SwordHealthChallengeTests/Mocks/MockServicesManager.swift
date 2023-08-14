@@ -19,8 +19,8 @@ class MockServicesManager: ServicesManagerProtocol {
     }
     
     
-    var stubImageFetch: UIImage?
-    func downloadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
+    var stubImageFetch: Result<UIImage?, Error>?
+    func downloadImage(from url: URL, completion: @escaping (Result<UIImage?, Error>) -> Void) {
         if let image = stubImageFetch {
             completion(image)
         }

@@ -19,9 +19,17 @@ class DogDetailViewModel {
     
     func fetchImageFromURL(completion: @escaping (UIImage?) -> Void) {
         if let url = URL(string: dogProfile.imageUrl) {
-            services.downloadImage(from: url) { downloadedImage in
-                self.dogProfile.image = downloadedImage
-                completion(downloadedImage)
+            services.downloadImage(from: url) { result in
+                switch result {
+                case .success(let image):
+                    if let image = image {
+                        completion(image)
+                    } else {
+                        completion(UIImage(named: "dog_icon"))
+                    }
+                case .failure(let error):
+                    print("Error downloading image: \(error.localizedDescription)")
+                }
             }
         }
     }

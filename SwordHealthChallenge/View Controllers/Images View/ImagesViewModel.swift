@@ -64,6 +64,24 @@ class ImagesViewModel {
         }
     }
     
+    func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile]) {
+        for (index, dog) in dogProfiles.enumerated() {
+            
+            if let url = URL(string: dog.imageUrl) {
+                
+                self.fetchImageFromURL(from: url, completion: { image in
+                    var dogAux = dogProfiles[index]
+                    dogAux.image = image
+                    
+                    var currentValues = self.dogsProfileList.value
+                    currentValues.append(dogAux)
+                    
+                    self.dogsProfileList.accept(currentValues)
+                })
+            }
+        }
+    }
+    
     func cellSelected(_ dogProfile: DogProfile) {
         let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)
@@ -71,36 +89,31 @@ class ImagesViewModel {
     }
     
     func orderListAlphabetically() {
-        if !isSortedAlphabetically {
-            let dogsd = dogsProfileList.value
-            
-            let sortedDogs = dogsd.map { dogs in
-                return dogsd.sorted { (dog1, dog2) -> Bool in
-                    let breedName1 = dog1.breedName
-                    let breedName2 = dog2.breedName
-                    return breedName1.localizedCaseInsensitiveCompare(breedName2) == .orderedAscending
-                }
-            }
-            dogsProfileList.accept(sortedDogs.first!)
-            isSortedAlphabetically.toggle()
+        guard !isSortedAlphabetically else {
+            return
         }
-    }
-    
-    func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile]) {
-        var dogProfilesAux = dogProfiles
-        for (index, dog) in dogProfilesAux.enumerated() {
-            if let url = URL(string: dog.imageUrl) {
-                self.fetchImageFromURL(from: url, completion: { image in
-                    dogProfilesAux[index].image = image
-                    var currentValues = self.dogsProfileList.value
-                    currentValues.append(dogProfilesAux[index])
-                    self.dogsProfileList.accept(currentValues)
-                })
-            } 
+        
+        let sortedDogs = dogsProfileList.value.sorted {
+            $0.breedName.localizedCaseInsensitiveCompare($1.breedName) == .orderedAscending
         }
+        
+        dogsProfileList.accept(sortedDogs)
+        isSortedAlphabetically = true
     }
-   
+ 
     private func fetchImageFromURL(from url: URL, completion: @escaping (UIImage?) -> Void) {
-        services.downloadImage(from: url, completion: completion)
+        services.downloadImage(from: url) { result in
+            switch result {
+            case .success(let image):
+                if let image = image {
+                    completion(image)
+                } else {
+                    completion(UIImage(named: "dog_icon"))
+                }
+            case .failure(let error):
+                // Handle the error
+                print("Error downloading image: \(error.localizedDescription)")
+            }
+        }
     }
 }

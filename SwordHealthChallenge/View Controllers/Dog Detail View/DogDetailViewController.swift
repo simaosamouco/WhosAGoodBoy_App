@@ -125,7 +125,8 @@ class DogDetailViewController: UIViewController {
             setUpViews()
         } else {
             viewModel.fetchImageFromURL(completion: { [weak self] image in
-                self?.imageView.image = image
+                self?.viewModel.dogProfile.image = image
+                self?.imageView.image = self?.viewModel.dogProfile.image
                 self?.setUpViews()
             })
         }
@@ -156,7 +157,10 @@ class DogDetailViewController: UIViewController {
 
         imageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(imageView.snp.width).multipliedBy(Double((viewModel.dogProfile.image?.size.height)!)/Double((viewModel.dogProfile.image?.size.width)!))
+            if let height = viewModel.dogProfile.image?.size.height, let width = viewModel.dogProfile.image?.size.width {
+                make.height.equalTo(imageView.snp.width).multipliedBy(Double(height)/Double(width))
+            }
+            
         }
 
         nameLabel.snp.makeConstraints { make in

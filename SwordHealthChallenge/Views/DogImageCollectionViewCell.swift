@@ -25,7 +25,7 @@ class DogImageCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .right
         return label
     }()
-
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,13 +37,23 @@ class DogImageCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupUI()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
     }
-
+    
     private func setupUI() {
+        
+        self.backgroundColor = .systemBackground
+        self.layer.cornerRadius = 15
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: 5, height: 5)
+        self.layer.shadowRadius = 5
+        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 0.5
+        
         contentView.addSubview(imageView)
         contentView.addSubview(labelView)
         labelView.addSubview(nameLabel)
@@ -65,13 +75,13 @@ class DogImageCollectionViewCell: UICollectionViewCell {
             make.trailing.bottom.equalTo(labelView).offset(-4)
         }
     }
-
+    
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-
+        
         let targetSize = CGSize(width: layoutAttributes.frame.width, height: UIView.layoutFittingCompressedSize.height)
         let size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-
+        
         attributes.frame.size.height = ceil(size.height)
         return attributes
     }

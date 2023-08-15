@@ -22,6 +22,11 @@ class NamesViewModel {
         return navigateToDetailView.asObservable()
     }
     
+    let somethingWentWrongRelay = PublishSubject<Void>()
+    func somethingWentWrong() -> Observable<Void> {
+        return somethingWentWrongRelay.asObservable()
+    }
+    
     private let bag = DisposeBag()
     let services: ServicesManagerProtocol
     
@@ -53,8 +58,8 @@ class NamesViewModel {
                 print(dogs.count)
                 let dogProfiles = dogs.map { DogProfile(dog: $0) }
                 self?.dogsProfileList.accept(dogProfiles)
-            case .failure(let error):
-                print("Error retrieving Dogs List: \(error.localizedDescription)")
+            case .failure(_):
+                self?.somethingWentWrongRelay.onNext(())
             }
         }
     }

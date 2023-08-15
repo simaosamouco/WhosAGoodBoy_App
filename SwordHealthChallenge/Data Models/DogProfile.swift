@@ -34,14 +34,14 @@ struct DogProfile {
     }
     
     init(id: String, breedName: String, breedGroup: String, origin: String, imageUrl: String, width: Int, height: Int, temperament: String, bredFor: String) {
-            self.id = id
-            self.breedName = breedName
-            self.breedGroup = breedGroup
-            self.origin = origin
-            self.imageUrl = imageUrl
-            self.width = width
-            self.height = height
-            self.temperament = temperament
-            self.bredFor = bredFor
-        }
+        self.id = id
+        self.breedName = breedName
+        self.breedGroup = breedGroup
+        self.origin = origin
+        self.imageUrl = imageUrl
+        self.width = width
+        self.height = height
+        self.temperament = temperament
+        self.bredFor = bredFor
+    }
 }

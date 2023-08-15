@@ -14,7 +14,7 @@ class NamesViewController: UIViewController {
     
     // MARK: - Properties
     
-    private lazy var spinner: SpinningLoaderView = {
+    private lazy var loaderView: SpinningLoaderView = {
         let view = SpinningLoaderView()
         view.startAnimating()
         return view
@@ -55,14 +55,14 @@ class NamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        bindTableView()
+        setUpBinding()
         viewModel.getDogsList()
         view.backgroundColor = .systemBackground
     }
     
     // MARK: - Binding
     
-    private func bindTableView() {
+    private func setUpBinding() {
         
         tableView.rx.delegate.setForwardToDelegate(self, retainDelegate: false)
         
@@ -75,7 +75,7 @@ class NamesViewController: UIViewController {
         
         viewModel.filteredDogsList
             .bind(to: tableView.rx.items(cellIdentifier: "dogCell", cellType: DogNameTableViewCell.self)) { [weak self] _, dog, cell in
-                self?.spinner.isHidden = true
+                self?.loaderView.isHidden = true
                 cell.dogNameLabel.text = dog.breedName
                 cell.groupLabel.text = dog.breedGroup
                 cell.originLabel.text = dog.origin
@@ -94,6 +94,12 @@ class NamesViewController: UIViewController {
                 self?.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: bag)
+        
+        viewModel.somethingWentWrong()
+            .subscribe(onNext: { [weak self] in
+                self?.showSomethingWentWrongWarning()
+            })
+            .disposed(by: bag)
     }
     
     // MARK: - UI Setup
@@ -101,7 +107,7 @@ class NamesViewController: UIViewController {
     private func setupUI() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
-        view.addSubview(spinner)
+        view.addSubview(loaderView)
         
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -115,9 +121,16 @@ class NamesViewController: UIViewController {
             make.top.equalTo(searchBar.snp.bottom).offset(8)
         }
         
-        spinner.snp.makeConstraints { make in
+        loaderView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func showSomethingWentWrongWarning() {
+        let alertController = UIAlertController(title: "Something Went Wrong...", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 

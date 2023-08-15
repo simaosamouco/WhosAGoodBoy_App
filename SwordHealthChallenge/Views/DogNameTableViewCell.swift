@@ -61,7 +61,7 @@ class DogNameTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-      
+        
         contentView.addSubview(contentViewAux)
         contentViewAux.snp.makeConstraints { make in
             make.top.leading.equalTo(contentView).offset(16)

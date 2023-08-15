@@ -17,7 +17,7 @@ final class ImagesViewModelTests: XCTestCase {
         mockServices = MockServicesManager()
         viewModel = ImagesViewModel(services: mockServices)
     }
-        func testFetchImagesForDogProfiles() {
+    func testFetchImagesForDogProfiles() {
         
         let mockDogProfile = DogProfile(id: "01",
                                         breedName: "Mock Name",
@@ -28,7 +28,7 @@ final class ImagesViewModelTests: XCTestCase {
                                         height: 200,
                                         temperament: "Mock Temperament",
                                         bredFor: "Mock Bred For")
-       
+        
         let mockImage = UIImage(named: "dog_icon")
         
         mockServices.stubImageFetch = .success(mockImage)
@@ -57,23 +57,23 @@ final class ImagesViewModelTests: XCTestCase {
     
     func testOrderListAlphabetically() {
         let mockDogProfile1 = DogProfile(id: "01",
-                                        breedName: "AMock Name",
-                                        breedGroup: "Mock Group",
-                                        origin: "Mock Origin",
-                                        imageUrl: "www.mockurl.com",
-                                        width: 200,
-                                        height: 200,
-                                        temperament: "Mock Temperament",
-                                        bredFor: "Mock Bred For")
+                                         breedName: "AMock Name",
+                                         breedGroup: "Mock Group",
+                                         origin: "Mock Origin",
+                                         imageUrl: "www.mockurl.com",
+                                         width: 200,
+                                         height: 200,
+                                         temperament: "Mock Temperament",
+                                         bredFor: "Mock Bred For")
         let mockDogProfile2 = DogProfile(id: "01",
-                                        breedName: "BMock Name",
-                                        breedGroup: "Mock Group",
-                                        origin: "Mock Origin",
-                                        imageUrl: "www.mockurl.com",
-                                        width: 200,
-                                        height: 200,
-                                        temperament: "Mock Temperament",
-                                        bredFor: "Mock Bred For")
+                                         breedName: "BMock Name",
+                                         breedGroup: "Mock Group",
+                                         origin: "Mock Origin",
+                                         imageUrl: "www.mockurl.com",
+                                         width: 200,
+                                         height: 200,
+                                         temperament: "Mock Temperament",
+                                         bredFor: "Mock Bred For")
         let array = [mockDogProfile2, mockDogProfile1]
         viewModel.dogsProfileList.accept(array)
         

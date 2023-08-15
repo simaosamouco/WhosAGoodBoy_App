@@ -22,9 +22,9 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     private var isGridLayout: Bool = true {
         didSet {
             self.switchLayoutButton.setImage(self.isGridLayout ?
-                                 UIImage(systemName: "line.3.horizontal") :
-                                    UIImage(systemName: "square.grid.3x3"),
-                                 for: .normal)
+                                             UIImage(systemName: "line.3.horizontal") :
+                                                UIImage(systemName: "square.grid.3x3"),
+                                             for: .normal)
         }
     }
     
@@ -167,15 +167,6 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         
         viewModel.dogsProfileList
             .bind(to: collectionView.rx.items(cellIdentifier: "dogCell", cellType: DogImageCollectionViewCell.self)) { index, dog, cell in
-                cell.backgroundColor = .systemBackground
-                cell.layer.cornerRadius = 15
-                cell.layer.shadowColor = UIColor.black.cgColor
-                cell.layer.shadowOpacity = 0.5
-                cell.layer.shadowOffset = CGSize(width: 5, height: 5)
-                cell.layer.shadowRadius = 5
-                cell.layer.cornerRadius = 5
-                cell.layer.borderWidth = 0.5
-                
                 cell.nameLabel.text = dog.breedName
                 cell.imageView.image = dog.image
             }
@@ -204,6 +195,13 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                 }
             })
             .disposed(by: bag)
+        
+        viewModel.somethingWentWrong()
+            .subscribe(onNext: { [weak self] in
+                self?.showSomethingWentWrongWarning()
+            })
+            .disposed(by: bag)
+        
     }
     
     // MARK: - Button Actions
@@ -214,7 +212,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         isChangingLayout = true
         collectionView.collectionViewLayout.invalidateLayout()
         collectionView.setCollectionViewLayout(layout, animated: true)
-        self.isChangingLayout = false
+        isChangingLayout = false
     }
     
     @objc private func orderPressed(_ sender: UIButton) {
@@ -234,5 +232,12 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         if distanceFromBottom + 100  < scrollView.bounds.height && viewModel.dogsProfileList.value.count != 0 {
             self.viewModel.getDogs()
         }
+    }
+    
+    private func showSomethingWentWrongWarning() {
+        let alertController = UIAlertController(title: "Something Went Wrong...", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

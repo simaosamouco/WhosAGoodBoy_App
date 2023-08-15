@@ -26,6 +26,11 @@ class ImagesViewModel {
         return isFetchingRelay.asObservable()
     }
     
+    let somethingWentWrongRelay = PublishSubject<Void>()
+    func somethingWentWrong() -> Observable<Void> {
+        return somethingWentWrongRelay.asObservable()
+    }
+    
     private var isSortedAlphabetically: Bool = false
     
     let services: ServicesManagerProtocol
@@ -44,7 +49,7 @@ class ImagesViewModel {
                 self.fetchImagesForDogProfiles(dogProfiles)
                 self.isSortedAlphabetically = false
             } else if let error = error {
-                print("Error fetching dogProfiles: \(error.localizedDescription)")
+                self.somethingWentWrongRelay.onNext(())
             }
         }
     }
@@ -59,7 +64,6 @@ class ImagesViewModel {
                 completion(dogProfiles, nil)
             case .failure(let error):
                 completion(nil, error)
-                print("Error retrieving Dogs List: \(error.localizedDescription)")
             }
         }
     }
@@ -100,7 +104,7 @@ class ImagesViewModel {
         dogsProfileList.accept(sortedDogs)
         isSortedAlphabetically = true
     }
- 
+    
     private func fetchImageFromURL(from url: URL, completion: @escaping (UIImage?) -> Void) {
         services.downloadImage(from: url) { result in
             switch result {
@@ -111,7 +115,6 @@ class ImagesViewModel {
                     completion(UIImage(named: "dog_icon"))
                 }
             case .failure(let error):
-                // Handle the error
                 print("Error downloading image: \(error.localizedDescription)")
             }
         }

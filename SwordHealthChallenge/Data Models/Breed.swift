@@ -29,18 +29,18 @@ struct Breed: Codable {
     }
     
     init(id: Int, name: String?, breedGroup: String?, origin: String?, temperament: String?, weight: Weight?, height: Height?) {
-           self.weight = weight
-           self.height = height
-           self.id = id
-           self.name = name
-           self.countryCode = nil
-           self.bredFor = nil
-           self.breedGroup = breedGroup
-           self.lifeSpan = nil
-           self.temperament = temperament
-           self.origin = origin
-           self.referenceImageId = nil
-       }
+        self.weight = weight
+        self.height = height
+        self.id = id
+        self.name = name
+        self.countryCode = nil
+        self.bredFor = nil
+        self.breedGroup = breedGroup
+        self.lifeSpan = nil
+        self.temperament = temperament
+        self.origin = origin
+        self.referenceImageId = nil
+    }
 }
 
 struct Weight: Codable {

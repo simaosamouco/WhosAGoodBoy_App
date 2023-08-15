@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class DogDetailViewController: UIViewController {
-
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -146,23 +146,22 @@ class DogDetailViewController: UIViewController {
         dataStackView.addArrangedSubview(originLabel)
         dataStackView.addArrangedSubview(temperamentTitleLabel)
         dataStackView.addArrangedSubview(temperamentLabel)
-
+        
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
+        
         contentView.snp.makeConstraints { make in
             make.edges.width.equalToSuperview()
         }
-
+        
         imageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             if let height = viewModel.dogProfile.image?.size.height, let width = viewModel.dogProfile.image?.size.width {
                 make.height.equalTo(imageView.snp.width).multipliedBy(Double(height)/Double(width))
             }
-            
         }
-
+        
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(8)

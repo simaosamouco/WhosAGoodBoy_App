@@ -15,8 +15,8 @@ struct Dog: Codable {
     let height: Int
     
     private enum CodingKeys: String, CodingKey {
-            case id, url, width, height, breeds
-        }
+        case id, url, width, height, breeds
+    }
     
     init(breeds: [Breed], id: String, url: String, width: Int, height: Int) {
         self.breeds = breeds

@@ -12,6 +12,8 @@
 		C219235EBE253FADF1719E23 /* Pods_SwordHealthChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1827D5EF44F6C746F080FDC /* Pods_SwordHealthChallengeTests.framework */; };
 		C3C5137A2A8A2725007878BA /* ImagesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C513792A8A2725007878BA /* ImagesViewModelTests.swift */; };
 		C3C5137D2A8A3193007878BA /* MockServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5137C2A8A3193007878BA /* MockServicesManager.swift */; };
+		C3C5137F2A8B78D5007878BA /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5137E2A8B78D5007878BA /* RealmManager.swift */; };
+		C3C513822A8B80D6007878BA /* DogProfileRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C513812A8B80D6007878BA /* DogProfileRealm.swift */; };
 		C3E5AC312A84DC9B00BFD77A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */; };
 		C3E5AC332A84DC9C00BFD77A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */; };
 		C3E5AC352A84DC9C00BFD77A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC342A84DC9C00BFD77A /* ViewController.swift */; };
@@ -65,6 +67,8 @@
 		C1827D5EF44F6C746F080FDC /* Pods_SwordHealthChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C513792A8A2725007878BA /* ImagesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelTests.swift; sourceTree = "<group>"; };
 		C3C5137C2A8A3193007878BA /* MockServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServicesManager.swift; sourceTree = "<group>"; };
+		C3C5137E2A8B78D5007878BA /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		C3C513812A8B80D6007878BA /* DogProfileRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogProfileRealm.swift; sourceTree = "<group>"; };
 		C3E5AC2D2A84DC9B00BFD77A /* SwordHealthChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordHealthChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +149,14 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		C3C513802A8B8028007878BA /* Realm Objects */ = {
+			isa = PBXGroup;
+			children = (
+				C3C513812A8B80D6007878BA /* DogProfileRealm.swift */,
+			);
+			path = "Realm Objects";
+			sourceTree = "<group>";
+		};
 		C3E5AC242A84DC9B00BFD77A = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +230,7 @@
 		C3E5AC672A84F54200BFD77A /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				C3C513802A8B8028007878BA /* Realm Objects */,
 				C3E5AC682A84F55A00BFD77A /* Dog.swift */,
 				C3E5AC6A2A84F69D00BFD77A /* Breed.swift */,
 				C3E5AC7F2A87826800BFD77A /* DogProfile.swift */,
@@ -229,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				C3E5AC6D2A84FE5100BFD77A /* ServicesManager.swift */,
+				C3C5137E2A8B78D5007878BA /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -543,6 +557,7 @@
 				C3E5AC6E2A84FE5100BFD77A /* ServicesManager.swift in Sources */,
 				C3E5AC882A8963D800BFD77A /* SpinningLoaderView.swift in Sources */,
 				C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */,
+				C3C513822A8B80D6007878BA /* DogProfileRealm.swift in Sources */,
 				C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */,
 				C3E5AC7E2A86639600BFD77A /* ImagesViewModel.swift in Sources */,
 				C3E5AC862A879D6000BFD77A /* DogDetailViewModel.swift in Sources */,
@@ -557,6 +572,7 @@
 				C3E5AC612A84E4EA00BFD77A /* TabBarController.swift in Sources */,
 				C3E5AC312A84DC9B00BFD77A /* AppDelegate.swift in Sources */,
 				C3E5AC7A2A86260400BFD77A /* ListFlowLayout.swift in Sources */,
+				C3C5137F2A8B78D5007878BA /* RealmManager.swift in Sources */,
 				C3E5AC332A84DC9C00BFD77A /* SceneDelegate.swift in Sources */,
 				C3E5AC702A851ED800BFD77A /* NamesViewModel.swift in Sources */,
 			);

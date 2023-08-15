@@ -20,9 +20,10 @@ class TabBarController: UITabBarController {
     func setUpVCs() {
         
         let services = ServicesManager()
+        let realm = RealmManager()
         
-        let namesViewModel = NamesViewModel(services: services)
-        let imagesViewModel = ImagesViewModel(services: services)
+        let namesViewModel = NamesViewModel(services: services, realm: realm)
+        let imagesViewModel = ImagesViewModel(services: services, realm: realm)
         
         viewControllers = [
             createNavController(for: ImagesViewController(viewModel: imagesViewModel),

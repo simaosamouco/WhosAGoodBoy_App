@@ -29,11 +29,13 @@ class NamesViewModel {
     
     private let bag = DisposeBag()
     let services: ServicesManagerProtocol
+    let realm: RealmManagerProtocol
     
     // MARK: - Initialization
     
-    init(services: ServicesManagerProtocol) {
+    init(services: ServicesManagerProtocol, realm: RealmManagerProtocol) {
         self.services = services
+        self.realm = realm
         
         Observable.combineLatest(dogsProfileList, searchQuery)
             .map { array, query in
@@ -65,7 +67,7 @@ class NamesViewModel {
     }
     
     func cellSelected(_ dogProfile: DogProfile) {
-        let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services)
+        let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)
         navigateToDetailView.onNext(detailVC)
     }

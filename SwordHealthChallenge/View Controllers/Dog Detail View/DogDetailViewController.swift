@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class DogDetailViewController: UIViewController {
     
@@ -105,6 +107,10 @@ class DogDetailViewController: UIViewController {
         return lb
     }()
     
+    var barButtonItem: UIBarButtonItem!
+    
+    private let bag = DisposeBag()
+    
     let viewModel: DogDetailViewModel
     
     init(viewModel: DogDetailViewModel) {
@@ -119,19 +125,33 @@ class DogDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        barButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark") , style: .plain, target: self, action: #selector(manageDogInDatabase))
+        barButtonItem.tintColor = .black
+        navigationItem.rightBarButtonItem = barButtonItem
+        setUpBinding()
         
         if let image = viewModel.dogProfile.image {
             self.imageView.image = image
             setUpViews()
+            viewModel.dogIsInDatabase()
         } else {
             viewModel.fetchImageFromURL(completion: { [weak self] image in
                 self?.viewModel.dogProfile.image = image
                 self?.imageView.image = self?.viewModel.dogProfile.image
                 self?.setUpViews()
+                self?.viewModel.dogIsInDatabase()
             })
         }
-        
         self.nameLabel.text = viewModel.dogProfile.breedName
+    }
+    
+    func setUpBinding() {
+        viewModel.isInDatabase
+            .asObservable()
+            .subscribe(onNext: { [weak self] isInDataBase in
+                self?.updateBarButton(isInDataBase)
+            })
+            .disposed(by: bag)
     }
     
     func setUpViews() {
@@ -174,5 +194,20 @@ class DogDetailViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-8)
             make.bottom.equalToSuperview().offset(-16)
         }
+    }
+    
+    private func updateBarButton(_ isInDataBase: Bool) {
+        barButtonItem = UIBarButtonItem(image: isInDataBase ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(manageDogInDatabase))
+        barButtonItem.tintColor = .black
+        DispatchQueue.main.async {
+            self.navigationItem.rightBarButtonItem = self.barButtonItem
+        }
+    }
+    
+    @objc func manageDogInDatabase(sender: UIButton) {
+        viewModel.bookMarkButtonTapped()
     }
 }

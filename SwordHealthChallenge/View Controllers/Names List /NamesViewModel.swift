@@ -17,9 +17,9 @@ class NamesViewModel {
     let filteredDogsList = BehaviorRelay<[DogProfile]>(value: [])
     let searchQuery = BehaviorRelay<String>(value: "")
     
-    private let navigateToDetailView = PublishSubject<DogDetailViewController>()
-    var actionNavigateToDetailView: Observable<DogDetailViewController> {
-        return navigateToDetailView.asObservable()
+    private let navigateToDetailViewRelay = PublishSubject<DogDetailViewController>()
+    var navigateToDetailView: Observable<DogDetailViewController> {
+        return navigateToDetailViewRelay.asObservable()
     }
     
     let somethingWentWrongRelay = PublishSubject<Void>()
@@ -68,6 +68,6 @@ class NamesViewModel {
     func cellSelected(_ dogProfile: DogProfile) {
         let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)
-        navigateToDetailView.onNext(detailVC)
+        navigateToDetailViewRelay.onNext(detailVC)
     }
 }

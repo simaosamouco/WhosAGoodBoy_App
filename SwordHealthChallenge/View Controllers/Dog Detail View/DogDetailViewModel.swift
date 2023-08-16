@@ -42,22 +42,15 @@ class DogDetailViewModel {
     }
     
     func bookMarkButtonTapped(){
-        if isInDatabase.value == true {
-            deleteDogFromDatabase(dogProfile)
-        } else {
-            addDogToDatabase(dogProfile)
-        }
+        isInDatabase.value ? deleteDogFromDatabase(dogProfile) : addDogToDatabase(dogProfile)
         checkIfDogIsInDatabase()
     }
     
     //MARK: - Realm Interactions
     func checkIfDogIsInDatabase() {
-        if retrieveDogFromDatabase() != nil {
-           isInDatabase.accept(true)
-       } else {
-           isInDatabase.accept(false)
-       }
+        isInDatabase.accept(retrieveDogFromDatabase() != nil)
    }
+    
     private func addDogToDatabase(_ dog: DogProfile) {
         
         let dogRealm = DogProfileRealm(dog: dog)

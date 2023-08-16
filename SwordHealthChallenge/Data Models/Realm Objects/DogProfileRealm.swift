@@ -18,7 +18,6 @@ class DogProfileRealm: Object {
     @Persisted var height: Int = 0
     @Persisted var temperament: String = ""
     @Persisted var bredFor: String = ""
-    @Persisted var image: Data? = nil
     
     convenience init(dog: DogProfile) {
         self.init()

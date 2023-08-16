@@ -88,7 +88,7 @@ class NamesViewController: UIViewController {
             })
             .disposed(by: bag)
         
-        viewModel.actionNavigateToDetailView
+        viewModel.navigateToDetailView
             .subscribe(onNext: { [weak self] vc in
                 self?.navigationController?.pushViewController(vc, animated: true)
             })

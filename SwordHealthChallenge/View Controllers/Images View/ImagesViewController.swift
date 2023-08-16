@@ -14,23 +14,6 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Properties
     
-    private var spinnerViewHeight: Constraint?
-    private var isChangingLayout = false
-    
-    private var listLayout = ListFlowLayout()
-    private var gridLayout = GridFlowLayout()
-    private var isGridLayout: Bool = true {
-        didSet {
-            self.switchLayoutButton.setImage(self.isGridLayout ?
-                                             UIImage(systemName: "line.3.horizontal") :
-                                                UIImage(systemName: "square.grid.3x3"),
-                                             for: .normal)
-        }
-    }
-    
-    private let bag = DisposeBag()
-    var viewModel: ImagesViewModel!
-    
     private lazy var loaderView: SpinningLoaderView = {
         let view = SpinningLoaderView()
         view.startAnimating()
@@ -94,6 +77,23 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         return bt
     }()
     
+    private var spinnerViewHeight: Constraint?
+    private var isChangingLayout = false
+    
+    private var listLayout = ListFlowLayout()
+    private var gridLayout = GridFlowLayout()
+    private var isGridLayout: Bool = true {
+        didSet {
+            self.switchLayoutButton.setImage(self.isGridLayout ?
+                                             UIImage(systemName: "line.3.horizontal") :
+                                                UIImage(systemName: "square.grid.3x3"),
+                                             for: .normal)
+        }
+    }
+    
+    private let bag = DisposeBag()
+    var viewModel: ImagesViewModel!
+    
     // MARK: - Initialization
     
     init(viewModel: ImagesViewModel) {
@@ -123,7 +123,6 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        
         view.addSubview(collectionViewFooterLoader)
         view.addSubview(collectionView)
         view.addSubview(switchLayoutButton)
@@ -170,12 +169,13 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
             }
             .disposed(by: bag)
         
-        collectionView.rx.modelSelected(DogProfile.self).subscribe(onNext: { dogProfile in
-            print(dogProfile.breedName)
-            self.viewModel.cellSelected(dogProfile)
-        }).disposed(by: bag)
+        collectionView.rx.modelSelected(DogProfile.self)
+            .subscribe(onNext: { [weak self] dogProfile in
+                self?.viewModel.cellSelected(dogProfile)
+            })
+            .disposed(by: bag)
         
-        viewModel.actionNavigateToDetailView
+        viewModel.navigateToDetailView
             .subscribe(onNext: { [weak self] vc in
                 self?.navigationController?.pushViewController(vc, animated: true)
             })

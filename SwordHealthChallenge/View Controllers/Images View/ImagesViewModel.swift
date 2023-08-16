@@ -16,9 +16,9 @@ class ImagesViewModel {
     private let bag = DisposeBag()
     let dogsProfileList = BehaviorRelay<[DogProfile]>(value: [])
     
-    private let navigateToDetailView = PublishSubject<DogDetailViewController>()
-    var actionNavigateToDetailView: Observable<DogDetailViewController> {
-        return navigateToDetailView.asObservable()
+    private let navigateToDetailViewRelay = PublishSubject<DogDetailViewController>()
+    var navigateToDetailView: Observable<DogDetailViewController> {
+        return navigateToDetailViewRelay.asObservable()
     }
     
     private let isFetchingRelay = PublishSubject<Bool>()
@@ -104,7 +104,7 @@ class ImagesViewModel {
     func cellSelected(_ dogProfile: DogProfile) {
         let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)
-        navigateToDetailView.onNext(detailVC)
+        navigateToDetailViewRelay.onNext(detailVC)
     }
     
     private func fetchImageFromURL(from url: URL, completion: @escaping (UIImage?) -> Void) {

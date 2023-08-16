@@ -35,7 +35,7 @@ class DogDetailViewModel {
                         completion(UIImage(named: "dog_icon"))
                     }
                 case .failure(let error):
-                    print("Error downloading image: \(error.localizedDescription)")
+                    completion(UIImage(named: "dog_icon"))
                 }
             }
         }

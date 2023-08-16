@@ -50,7 +50,7 @@ class ImagesViewModel {
             if let dogProfiles = dogProfiles {
                 self.fetchImagesForDogProfiles(dogProfiles)
                 self.isSortedAlphabetically = false
-            } else if let error = error {
+            } else if error != nil {
                 self.somethingWentWrongRelay.onNext(())
             }
         }
@@ -88,23 +88,23 @@ class ImagesViewModel {
         }
     }
     
-    func cellSelected(_ dogProfile: DogProfile) {
-        let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
-        let detailVC = DogDetailViewController(viewModel: detailViewModel)
-        navigateToDetailView.onNext(detailVC)
-    }
-    
     func orderListAlphabetically() {
         guard !isSortedAlphabetically else {
             return
         }
-        
         let sortedDogs = dogsProfileList.value.sorted {
             $0.breedName.localizedCaseInsensitiveCompare($1.breedName) == .orderedAscending
         }
-        
         dogsProfileList.accept(sortedDogs)
         isSortedAlphabetically = true
+    }
+    
+    // MARK: - Navigation
+    
+    func cellSelected(_ dogProfile: DogProfile) {
+        let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
+        let detailVC = DogDetailViewController(viewModel: detailViewModel)
+        navigateToDetailView.onNext(detailVC)
     }
     
     private func fetchImageFromURL(from url: URL, completion: @escaping (UIImage?) -> Void) {

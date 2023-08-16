@@ -57,7 +57,6 @@ class NamesViewModel {
         services.getDogsList { [weak self] result in
             switch result {
             case .success(let dogs):
-                print(dogs.count)
                 let dogProfiles = dogs.map { DogProfile(dog: $0) }
                 self?.dogsProfileList.accept(dogProfiles)
             case .failure(_):

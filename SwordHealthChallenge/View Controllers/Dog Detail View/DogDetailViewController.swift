@@ -12,6 +12,8 @@ import RxCocoa
 
 class DogDetailViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +103,7 @@ class DogDetailViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let lb = UILabel()
+        lb.text = viewModel.dogProfile.breedName
         lb.textAlignment = .center
         lb.font = UIFont.boldSystemFont(ofSize: 24)
         lb.translatesAutoresizingMaskIntoConstraints = false
@@ -112,6 +115,8 @@ class DogDetailViewController: UIViewController {
     private let bag = DisposeBag()
     
     let viewModel: DogDetailViewModel
+    
+    // MARK: - Initialization
     
     init(viewModel: DogDetailViewModel) {
         self.viewModel = viewModel
@@ -129,25 +134,14 @@ class DogDetailViewController: UIViewController {
         barButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = barButtonItem
         setUpBinding()
-        
-        if let image = viewModel.dogProfile.image {
-            self.imageView.image = image
-            setUpViews()
-            viewModel.dogIsInDatabase()
-        } else {
-            viewModel.fetchImageFromURL(completion: { [weak self] image in
-                self?.viewModel.dogProfile.image = image
-                self?.imageView.image = self?.viewModel.dogProfile.image
-                self?.setUpViews()
-                self?.viewModel.dogIsInDatabase()
-            })
-        }
-        self.nameLabel.text = viewModel.dogProfile.breedName
+        handleDogImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.dogIsInDatabase()
+        viewModel.checkIfDogIsInDatabase()
     }
+    
+    // MARK: - Binding
     
     func setUpBinding() {
         viewModel.isInDatabase
@@ -157,6 +151,8 @@ class DogDetailViewController: UIViewController {
             })
             .disposed(by: bag)
     }
+    
+    // MARK: - UI Setup
     
     func setUpViews() {
         view.addSubview(scrollView)
@@ -197,6 +193,21 @@ class DogDetailViewController: UIViewController {
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
             make.bottom.equalToSuperview().offset(-16)
+        }
+    }
+    
+    private func handleDogImage() {
+        if let image = viewModel.dogProfile.image {
+            self.imageView.image = image
+            setUpViews()
+            viewModel.checkIfDogIsInDatabase()
+        } else {
+            viewModel.fetchImageFromURL(completion: { [weak self] image in
+                self?.viewModel.dogProfile.image = image
+                self?.imageView.image = self?.viewModel.dogProfile.image
+                self?.setUpViews()
+                self?.viewModel.checkIfDogIsInDatabase()
+            })
         }
     }
     

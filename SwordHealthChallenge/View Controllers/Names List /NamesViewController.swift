@@ -84,7 +84,6 @@ class NamesViewController: UIViewController {
         
         tableView.rx.modelSelected(DogProfile.self)
             .subscribe(onNext: { [weak self] dogProfile in
-                print(dogProfile.breedName)
                 self?.viewModel.cellSelected(dogProfile)
             })
             .disposed(by: bag)

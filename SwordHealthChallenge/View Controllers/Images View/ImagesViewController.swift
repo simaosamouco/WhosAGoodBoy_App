@@ -31,8 +31,6 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     private let bag = DisposeBag()
     var viewModel: ImagesViewModel!
     
-    // MARK: - UI Elements
-    
     private lazy var loaderView: SpinningLoaderView = {
         let view = SpinningLoaderView()
         view.startAnimating()
@@ -158,7 +156,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    // MARK: - Data Bindings
+    // MARK: - Binding
     
     private func setupBindings() {
         

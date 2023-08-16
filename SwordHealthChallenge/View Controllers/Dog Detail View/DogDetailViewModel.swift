@@ -47,11 +47,11 @@ class DogDetailViewModel {
         } else {
             addDogToDatabase(dogProfile)
         }
-        dogIsInDatabase()
+        checkIfDogIsInDatabase()
     }
     
     //MARK: - Realm Interactions
-    func dogIsInDatabase() {
+    func checkIfDogIsInDatabase() {
         if retrieveDogFromDatabase() != nil {
            isInDatabase.accept(true)
        } else {

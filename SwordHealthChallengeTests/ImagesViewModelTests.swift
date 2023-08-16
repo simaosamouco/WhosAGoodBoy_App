@@ -12,10 +12,12 @@ final class ImagesViewModelTests: XCTestCase {
     
     var viewModel: ImagesViewModel!
     var mockServices: MockServicesManager!
+    var mockRealm: MockRealmManager!
     
     override func setUpWithError() throws {
         mockServices = MockServicesManager()
-        viewModel = ImagesViewModel(services: mockServices)
+        mockRealm = MockRealmManager()
+        viewModel = ImagesViewModel(services: mockServices, realm: mockRealm)
     }
     func testFetchImagesForDogProfiles() {
         

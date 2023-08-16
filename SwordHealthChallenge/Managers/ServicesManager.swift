@@ -20,8 +20,6 @@ class ServicesManager: ServicesManagerProtocol {
     private let baseURL = "https://api.thedogapi.com/v1/images/search?"
     private let apiKey = "live_nWyKMkMyWVKzB7IQIvk837QmwLPRSnnS19i5NODFqw9H6615UAY1YcmUzDeFY7tP"
     
-    init() {}
-    
     private func callApi<T: Decodable>(endpoint: String, method: HTTPMethod, parameters: Parameters? = nil, completion: @escaping APICompletion<T>) {
         
         AF.request(endpoint, method: method, parameters: parameters)
@@ -39,7 +37,7 @@ class ServicesManager: ServicesManagerProtocol {
     func getDogsList(completion: @escaping APICompletion<[Dog]>) {
         
         let parameters: Parameters = [
-            "limit": 20,
+            "limit": 21,
             "has_breeds": 1,
             "api_key": apiKey
         ]

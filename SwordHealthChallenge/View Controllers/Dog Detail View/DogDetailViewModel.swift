@@ -34,7 +34,7 @@ class DogDetailViewModel {
                     } else {
                         completion(UIImage(named: "dog_icon"))
                     }
-                case .failure(let error):
+                case .failure(_):
                     completion(UIImage(named: "dog_icon"))
                 }
             }
@@ -57,7 +57,6 @@ class DogDetailViewModel {
         
         do {
             try realm.saveObject(dogRealm)
-            print("Dog added to database.")
         } catch {
             print("Error adding Dog to database: \(error)")
             return
@@ -68,7 +67,6 @@ class DogDetailViewModel {
         let dogRealm = DogProfileRealm(dog: dog)
         do {
             try realm.deleteObject(dogRealm)
-            print("Dog deleted from the database.")
         } catch {
             print("Error deleting Dog from the database: \(error)")
             return

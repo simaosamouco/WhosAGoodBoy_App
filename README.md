@@ -43,3 +43,10 @@ This application utilizes a view code approach instead of storyboards for buildi
 This approach promotes cleaner and more maintainable code.
 It also takes into consideration the benefits it offers in a team environment.
 Utilizing View Code enhances code review processes and simplifies the resolving merge conflicts.
+
+## Getting Started
+To explore the App, follow these steps:
+
+ - Clone the repository to your local machine.
+ - Open the **.xcworkspace** file in Xcode.
+ - Run the app on the desired simulator or device.

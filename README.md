@@ -5,7 +5,7 @@ The app uses the MVVM design pattern with dependency injection and integrates va
 
 ## App Demo
 <div align="center">
-  <video src="https://github.com/simaosamouco/SwordHealthChallenge/assets/37107794/02d7c543-35b0-4556-89d9-c58fd56851ff" width="400" />
+  <video src="https://github.com/simaosamouco/SwordHealthChallenge/assets/37107794/4f3f6672-46a1-442c-8a59-daf6469e5bfe" width="400" />
 </div>
 
 ## Features

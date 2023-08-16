@@ -24,6 +24,7 @@ class TabBarController: UITabBarController {
         
         let namesViewModel = NamesViewModel(services: services, realm: realm)
         let imagesViewModel = ImagesViewModel(services: services, realm: realm)
+        let savedDogsViewModel = SavedDogsListViewModel(service: services, realm: realm)
         
         viewControllers = [
             createNavController(for: ImagesViewController(viewModel: imagesViewModel),
@@ -31,7 +32,10 @@ class TabBarController: UITabBarController {
                                 image: UIImage(systemName: "photo.stack")!),
             createNavController(for: NamesViewController(viewModel: namesViewModel),
                                 title: NSLocalizedString("Names", comment: ""),
-                                image: UIImage(systemName: "a.magnify")!)
+                                image: UIImage(systemName: "a.magnify")!),
+            createNavController(for: SavedDogsListViewController(viewModel: savedDogsViewModel),
+                                title: "Rescued Dogs",
+                                image: UIImage(systemName: "bookmark.circle.fill")!)
         ]
     }
     

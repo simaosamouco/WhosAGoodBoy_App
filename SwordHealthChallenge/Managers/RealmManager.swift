@@ -17,11 +17,12 @@ protocol RealmManagerProtocol: AnyObject {
     func getAllObjects<T: Object>(ofType type: T.Type) throws -> [T]
     func deleteObject<T: Object>(_ object: T) throws
     func getObject<T: Object>(ofType type: T.Type, primaryKey: Any) throws -> T
+    var realmQueue: DispatchQueue { get }
 }
 
 class RealmManager: RealmManagerProtocol {
     
-    private let realmQueue = DispatchQueue(label: "dbQueue")
+    let realmQueue = DispatchQueue(label: "dbQueue")
     private let realm: Realm
     
     public init() {

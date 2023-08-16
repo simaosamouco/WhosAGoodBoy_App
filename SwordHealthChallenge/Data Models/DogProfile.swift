@@ -44,4 +44,16 @@ struct DogProfile {
         self.temperament = temperament
         self.bredFor = bredFor
     }
+    
+    init(savedDog: DogProfileRealm) {
+        self.id = savedDog.id
+        self.imageUrl = savedDog.imageUrl
+        self.height = savedDog.height
+        self.width = savedDog.width
+        self.bredFor = savedDog.bredFor
+        self.breedGroup = savedDog.breedGroup
+        self.breedName = savedDog.breedName
+        self.origin = savedDog.origin
+        self.temperament = savedDog.temperament
+    }
 }

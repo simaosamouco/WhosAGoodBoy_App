@@ -145,6 +145,10 @@ class DogDetailViewController: UIViewController {
         self.nameLabel.text = viewModel.dogProfile.breedName
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.dogIsInDatabase()
+    }
+    
     func setUpBinding() {
         viewModel.isInDatabase
             .asObservable()

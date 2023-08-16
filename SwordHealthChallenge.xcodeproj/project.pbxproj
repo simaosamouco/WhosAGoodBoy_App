@@ -14,6 +14,8 @@
 		C3C5137D2A8A3193007878BA /* MockServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5137C2A8A3193007878BA /* MockServicesManager.swift */; };
 		C3C5137F2A8B78D5007878BA /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5137E2A8B78D5007878BA /* RealmManager.swift */; };
 		C3C513822A8B80D6007878BA /* DogProfileRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C513812A8B80D6007878BA /* DogProfileRealm.swift */; };
+		C3C513852A8BA965007878BA /* SavedDogsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C513842A8BA965007878BA /* SavedDogsListViewController.swift */; };
+		C3C513872A8BA97A007878BA /* SavedDogsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C513862A8BA97A007878BA /* SavedDogsListViewModel.swift */; };
 		C3E5AC312A84DC9B00BFD77A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */; };
 		C3E5AC332A84DC9C00BFD77A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */; };
 		C3E5AC352A84DC9C00BFD77A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5AC342A84DC9C00BFD77A /* ViewController.swift */; };
@@ -69,6 +71,8 @@
 		C3C5137C2A8A3193007878BA /* MockServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServicesManager.swift; sourceTree = "<group>"; };
 		C3C5137E2A8B78D5007878BA /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		C3C513812A8B80D6007878BA /* DogProfileRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogProfileRealm.swift; sourceTree = "<group>"; };
+		C3C513842A8BA965007878BA /* SavedDogsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDogsListViewController.swift; sourceTree = "<group>"; };
+		C3C513862A8BA97A007878BA /* SavedDogsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDogsListViewModel.swift; sourceTree = "<group>"; };
 		C3E5AC2D2A84DC9B00BFD77A /* SwordHealthChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwordHealthChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +161,15 @@
 			path = "Realm Objects";
 			sourceTree = "<group>";
 		};
+		C3C513832A8BA93D007878BA /* Saved Dogs List View */ = {
+			isa = PBXGroup;
+			children = (
+				C3C513842A8BA965007878BA /* SavedDogsListViewController.swift */,
+				C3C513862A8BA97A007878BA /* SavedDogsListViewModel.swift */,
+			);
+			path = "Saved Dogs List View";
+			sourceTree = "<group>";
+		};
 		C3E5AC242A84DC9B00BFD77A = {
 			isa = PBXGroup;
 			children = (
@@ -182,10 +195,10 @@
 		C3E5AC2F2A84DC9B00BFD77A /* SwordHealthChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C3E5AC662A84E63B00BFD77A /* View Controllers */,
+				C3E5AC672A84F54200BFD77A /* Data Models */,
 				C3E5AC722A8528C600BFD77A /* Views */,
 				C3E5AC6C2A84FE3E00BFD77A /* Managers */,
-				C3E5AC672A84F54200BFD77A /* Data Models */,
-				C3E5AC662A84E63B00BFD77A /* View Controllers */,
 				C3E5AC302A84DC9B00BFD77A /* AppDelegate.swift */,
 				C3E5AC322A84DC9C00BFD77A /* SceneDelegate.swift */,
 				C3E5AC342A84DC9C00BFD77A /* ViewController.swift */,
@@ -219,6 +232,7 @@
 		C3E5AC662A84E63B00BFD77A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3C513832A8BA93D007878BA /* Saved Dogs List View */,
 				C3E5AC812A879D0400BFD77A /* Dog Detail View */,
 				C3E5AC752A861C0200BFD77A /* Images View */,
 				C3E5AC712A851EE700BFD77A /* Names List  */,
@@ -559,6 +573,7 @@
 				C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */,
 				C3C513822A8B80D6007878BA /* DogProfileRealm.swift in Sources */,
 				C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */,
+				C3C513852A8BA965007878BA /* SavedDogsListViewController.swift in Sources */,
 				C3E5AC7E2A86639600BFD77A /* ImagesViewModel.swift in Sources */,
 				C3E5AC862A879D6000BFD77A /* DogDetailViewModel.swift in Sources */,
 				C3E5AC782A8625F200BFD77A /* GridFlowLayout.swift in Sources */,
@@ -571,6 +586,7 @@
 				C3E5AC352A84DC9C00BFD77A /* ViewController.swift in Sources */,
 				C3E5AC612A84E4EA00BFD77A /* TabBarController.swift in Sources */,
 				C3E5AC312A84DC9B00BFD77A /* AppDelegate.swift in Sources */,
+				C3C513872A8BA97A007878BA /* SavedDogsListViewModel.swift in Sources */,
 				C3E5AC7A2A86260400BFD77A /* ListFlowLayout.swift in Sources */,
 				C3C5137F2A8B78D5007878BA /* RealmManager.swift in Sources */,
 				C3E5AC332A84DC9C00BFD77A /* SceneDelegate.swift in Sources */,

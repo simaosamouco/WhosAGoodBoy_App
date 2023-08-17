@@ -75,14 +75,13 @@ class ImagesViewModel {
             
             if let url = URL(string: dog.imageUrl) {
                 
-                self.fetchImageFromURL(from: url, completion: { image in
+                self.fetchImageFromURL(from: url, completion: { [weak self] image in
                     var dogAux = dogProfiles[index]
                     dogAux.image = image
-                    
-                    var currentValues = self.dogsProfileList.value
-                    currentValues.append(dogAux)
-                    
-                    self.dogsProfileList.accept(currentValues)
+                    if var currentValues = self?.dogsProfileList.value {
+                        currentValues.append(dogAux)
+                        self?.dogsProfileList.accept(currentValues)
+                    }
                 })
             }
         }

@@ -46,20 +46,30 @@ class ImagesViewModel {
     // MARK: - Public Methods
     
     func getDogs() {
-        getDogsListFromService { dogProfiles, error in
+        var dogProfilesWithImages = [DogProfile]()
+        let group = DispatchGroup()
+        group.enter()
+        getDogsListFromService { [weak self] dogProfiles, error in
             if let dogProfiles = dogProfiles {
-                self.fetchImagesForDogProfiles(dogProfiles)
-                self.isSortedAlphabetically = false
-            } else if error != nil {
-                self.somethingWentWrongRelay.onNext(())
+                self?.fetchImagesForDogProfiles(dogProfiles) { dogs in
+                    dogProfilesWithImages = dogs
+                    group.leave()
+                }
+            } else {
+                group.leave()
+                self?.somethingWentWrongRelay.onNext(())
             }
         }
+        
+        group.notify(queue: DispatchQueue.main) {
+            self.dogsProfileList.accept(self.dogsProfileList.value + dogProfilesWithImages)
+            self.isFetchingRelay.onNext(false)
+        }
     }
-    
+
     func getDogsListFromService(completion: @escaping ([DogProfile]?, Error?) -> Void) {
         isFetchingRelay.onNext(true)
-        services.getDogsList { [weak self] result in
-            self?.isFetchingRelay.onNext(false)
+        services.getDogsList { result in
             switch result {
             case .success(let dogs):
                 let dogProfiles = dogs.map { DogProfile(dog: $0) }
@@ -70,23 +80,26 @@ class ImagesViewModel {
         }
     }
     
-    func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile]) {
+    func fetchImagesForDogProfiles(_ dogProfiles: [DogProfile], completion: @escaping ([DogProfile]) -> Void) {
+        var dogsToReturn = [DogProfile]()
+        let group = DispatchGroup()
         for (index, dog) in dogProfiles.enumerated() {
-            
             if let url = URL(string: dog.imageUrl) {
-                
-                self.fetchImageFromURL(from: url, completion: { [weak self] image in
+                group.enter()
+                self.fetchImageFromURL(from: url, completion: { image in
                     var dogAux = dogProfiles[index]
                     dogAux.image = image
-                    if var currentValues = self?.dogsProfileList.value {
-                        currentValues.append(dogAux)
-                        self?.dogsProfileList.accept(currentValues)
-                    }
+                    dogsToReturn.append(dogAux)
+                    group.leave()
                 })
             }
         }
+        
+        group.notify(queue: .global()) {
+            completion(dogsToReturn)
+        }
     }
-    
+  
     func orderListAlphabetically() {
         guard !isSortedAlphabetically else {
             return

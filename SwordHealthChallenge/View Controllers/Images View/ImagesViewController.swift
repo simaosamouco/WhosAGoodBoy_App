@@ -164,6 +164,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
         
         viewModel.dogsProfileList
             .bind(to: collectionView.rx.items(cellIdentifier: "dogCell", cellType: DogImageCollectionViewCell.self)) { index, dog, cell in
+                self.loaderView.isHidden = true
                 cell.nameLabel.text = dog.breedName
                 cell.imageView.image = dog.image
             }
@@ -187,7 +188,6 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                     self?.collectionViewFooterLoader.isHidden = false
                     self?.spinnerViewHeight?.update(offset: 50)
                 } else {
-                    self?.loaderView.isHidden = true
                     self?.collectionViewFooterLoader.isHidden = true
                     self?.spinnerViewHeight?.update(offset: 0)
                 }
@@ -220,9 +220,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Scroll View Delegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isChangingLayout {
-            return
-        }
+        if isChangingLayout { return }
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let distanceFromBottom = contentHeight - offsetY

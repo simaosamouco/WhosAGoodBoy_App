@@ -48,14 +48,15 @@ class ImagesViewModel {
     func getDogs() {
         isFetchingRelay.onNext(true)
         services.getDogsList { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let dogs):
                 let dogProfiles = dogs.map { DogProfile(dog: $0) }
-                self?.dogsProfileList.accept((self?.dogsProfileList.value)! + dogProfiles)
-                self?.isSortedAlphabetically = false
-                self?.isFetchingRelay.onNext(false)
+                self.dogsProfileList.accept(self.dogsProfileList.value + dogProfiles)
+                self.isSortedAlphabetically = false
+                self.isFetchingRelay.onNext(false)
             case .failure(_):
-                self?.somethingWentWrongRelay.onNext(())
+                self.somethingWentWrongRelay.onNext(())
             }
         }
     }
@@ -90,7 +91,7 @@ class ImagesViewModel {
         guard !isSortedAlphabetically else {
             return
         }
-        var sortedList = dogListManager.sortAlphabetically(dogsProfileList.value)
+        let sortedList = dogListManager.sortAlphabetically(dogsProfileList.value)
         dogsProfileList.accept(sortedList)
         isSortedAlphabetically = true
     }

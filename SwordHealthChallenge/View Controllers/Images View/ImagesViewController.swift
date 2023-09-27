@@ -166,7 +166,7 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
                                               cellType: DogImageCollectionViewCell.self)) { [weak self] index, dog, cell in
                 self?.loaderView.isHidden = true
                 cell.nameLabel.text = dog.breedName
-                
+                cell.imageView.image = UIImage(named: "dog_icon")!
                 self?.viewModel.getImage(from: dog, completion: { image in
                         cell.imageView.image = image
                 })

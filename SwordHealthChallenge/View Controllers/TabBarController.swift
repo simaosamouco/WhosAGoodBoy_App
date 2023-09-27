@@ -29,10 +29,10 @@ class TabBarController: UITabBarController {
         
         viewControllers = [
             createNavController(for: ImagesViewController(viewModel: imagesViewModel),
-                                title: NSLocalizedString("Images", comment: ""),
+                                title: "Images",
                                 image: UIImage(systemName: "photo.stack")!),
             createNavController(for: NamesViewController(viewModel: namesViewModel),
-                                title: NSLocalizedString("Names", comment: ""),
+                                title: "Names",
                                 image: UIImage(systemName: "a.magnify")!),
             createNavController(for: SavedDogsListViewController(viewModel: savedDogsViewModel),
                                 title: "Rescued Dogs",

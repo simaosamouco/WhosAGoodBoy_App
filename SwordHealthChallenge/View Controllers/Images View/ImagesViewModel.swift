@@ -50,6 +50,7 @@ class ImagesViewModel {
             case .success(let dogs):
                 let dogProfiles = dogs.map { DogProfile(dog: $0) }
                 self?.dogsProfileList.accept((self?.dogsProfileList.value)! + dogProfiles)
+                self?.isSortedAlphabetically = false
                 self?.isFetchingRelay.onNext(false)
             case .failure(_):
                 self?.somethingWentWrongRelay.onNext(())

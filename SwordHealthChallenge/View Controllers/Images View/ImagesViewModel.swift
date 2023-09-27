@@ -97,7 +97,11 @@ class ImagesViewModel {
     
     // MARK: - Navigation
     func cellSelected(_ dogProfile: DogProfile) {
-        let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
+        var dog = dogProfile
+        if let cachedImage = imageCache.object(forKey: NSString(string: dog.imageUrl)) {
+            dog.image = cachedImage
+        }
+        let detailViewModel = DogDetailViewModel(dogProfile: dog, services: services, realm: realm)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)
         navigateToDetailViewRelay.onNext(detailVC)
     }

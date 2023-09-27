@@ -36,11 +36,13 @@ class ImagesViewModel {
     
     let services: ServicesManagerProtocol
     let realm: RealmManagerProtocol
+    let dogListManager: DogListManagerProtocol
     
     // MARK: - Initialization
-    init(services: ServicesManagerProtocol, realm: RealmManagerProtocol) {
+    init(services: ServicesManagerProtocol, realm: RealmManagerProtocol, dogListManager: DogListManagerProtocol) {
         self.services = services
         self.realm = realm
+        self.dogListManager = dogListManager
     }
     
     func getDogs() {
@@ -88,14 +90,12 @@ class ImagesViewModel {
         guard !isSortedAlphabetically else {
             return
         }
-        let sortedDogs = dogsProfileList.value.sorted {
-            $0.breedName.localizedCaseInsensitiveCompare($1.breedName) == .orderedAscending
-        }
-        dogsProfileList.accept(sortedDogs)
+        var sortedList = dogListManager.sortAlphabetically(dogsProfileList.value)
+        dogsProfileList.accept(sortedList)
         isSortedAlphabetically = true
     }
-    // MARK: - Navigation
     
+    // MARK: - Navigation
     func cellSelected(_ dogProfile: DogProfile) {
         let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)

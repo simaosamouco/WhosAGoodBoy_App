@@ -30,25 +30,16 @@ class NamesViewModel {
     private let bag = DisposeBag()
     let services: ServicesManagerProtocol
     let realm: RealmManagerProtocol
+    let dogListManager: DogListManagerProtocol
     
     // MARK: - Initialization
     
-    init(services: ServicesManagerProtocol, realm: RealmManagerProtocol) {
+    init(services: ServicesManagerProtocol, realm: RealmManagerProtocol, dogListManager: DogListManagerProtocol) {
         self.services = services
         self.realm = realm
+        self.dogListManager = dogListManager
         
-        Observable.combineLatest(dogsProfileList, searchQuery)
-            .map { array, query in
-                if query.isEmpty {
-                    return array
-                } else {
-                    return array.filter { dog in
-                        return dog.breedName.lowercased().contains(query.lowercased())
-                    }
-                }
-            }
-            .bind(to: filteredDogsList)
-            .disposed(by: bag)
+        setUpBindings()
     }
     
     // MARK: - Methods
@@ -65,8 +56,20 @@ class NamesViewModel {
         }
     }
     
-    //MARK: - Navigaiton
+    func setUpBindings() {
+        Observable.combineLatest(dogsProfileList, searchQuery)
+            .map { [weak self] array, query in
+                if query.isEmpty {
+                    return array
+                } else {
+                    return self?.dogListManager.filterByName(array, query: query) ?? array
+                }
+            }
+            .bind(to: filteredDogsList)
+            .disposed(by: bag)
+    }
     
+    //MARK: - Navigaiton
     func cellSelected(_ dogProfile: DogProfile) {
         let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)

@@ -21,9 +21,10 @@ class TabBarController: UITabBarController {
         
         let services = ServicesManager()
         let realm = RealmManager()
+        let dogListManager = DogListManager()
         
-        let namesViewModel = NamesViewModel(services: services, realm: realm)
-        let imagesViewModel = ImagesViewModel(services: services, realm: realm)
+        let namesViewModel = NamesViewModel(services: services, realm: realm, dogListManager: dogListManager)
+        let imagesViewModel = ImagesViewModel(services: services, realm: realm, dogListManager: dogListManager)
         let savedDogsViewModel = SavedDogsListViewModel(service: services, realm: realm)
         
         viewControllers = [

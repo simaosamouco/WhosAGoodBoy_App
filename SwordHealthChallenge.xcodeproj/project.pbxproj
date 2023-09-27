@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		503147CED52EED04D5BB0E44 /* Pods_SwordHealthChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD93C568D77215710A708771 /* Pods_SwordHealthChallenge.framework */; };
 		C219235EBE253FADF1719E23 /* Pods_SwordHealthChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1827D5EF44F6C746F080FDC /* Pods_SwordHealthChallengeTests.framework */; };
+		C3BCDEC32AC43AAE0083C19D /* DogListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BCDEC22AC43AAE0083C19D /* DogListManager.swift */; };
 		C3C5137A2A8A2725007878BA /* ImagesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C513792A8A2725007878BA /* ImagesViewModelTests.swift */; };
 		C3C5137D2A8A3193007878BA /* MockServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5137C2A8A3193007878BA /* MockServicesManager.swift */; };
 		C3C5137F2A8B78D5007878BA /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5137E2A8B78D5007878BA /* RealmManager.swift */; };
@@ -63,6 +64,7 @@
 		0A3B157D695C02575A4DFB34 /* Pods-SwordHealthChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallenge.debug.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallenge/Pods-SwordHealthChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		7375F7BF58335C718B478108 /* Pods-SwordHealthChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwordHealthChallenge.release.xcconfig"; path = "Target Support Files/Pods-SwordHealthChallenge/Pods-SwordHealthChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		C1827D5EF44F6C746F080FDC /* Pods_SwordHealthChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwordHealthChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BCDEC22AC43AAE0083C19D /* DogListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogListManager.swift; sourceTree = "<group>"; };
 		C3C513792A8A2725007878BA /* ImagesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelTests.swift; sourceTree = "<group>"; };
 		C3C5137C2A8A3193007878BA /* MockServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServicesManager.swift; sourceTree = "<group>"; };
 		C3C5137E2A8B78D5007878BA /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			children = (
 				C3E5AC6D2A84FE5100BFD77A /* ServicesManager.swift */,
 				C3C5137E2A8B78D5007878BA /* RealmManager.swift */,
+				C3BCDEC22AC43AAE0083C19D /* DogListManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				C3E5AC6B2A84F69D00BFD77A /* Breed.swift in Sources */,
 				C3C513822A8B80D6007878BA /* DogProfileRealm.swift in Sources */,
 				C3E5AC632A84E61200BFD77A /* ImagesViewController.swift in Sources */,
+				C3BCDEC32AC43AAE0083C19D /* DogListManager.swift in Sources */,
 				C3C513852A8BA965007878BA /* SavedDogsListViewController.swift in Sources */,
 				C3E5AC7E2A86639600BFD77A /* ImagesViewModel.swift in Sources */,
 				C3E5AC862A879D6000BFD77A /* DogDetailViewModel.swift in Sources */,

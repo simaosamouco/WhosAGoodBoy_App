@@ -158,15 +158,18 @@ class ImagesViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Binding
     
     private func setupBindings() {
-        
         collectionView.register(DogImageCollectionViewCell.self, forCellWithReuseIdentifier: "dogCell")
         collectionView.delegate = self
         
         viewModel.dogsProfileList
-            .bind(to: collectionView.rx.items(cellIdentifier: "dogCell", cellType: DogImageCollectionViewCell.self)) { index, dog, cell in
-                self.loaderView.isHidden = true
+            .bind(to: collectionView.rx.items(cellIdentifier: "dogCell",
+                                              cellType: DogImageCollectionViewCell.self)) { [weak self] index, dog, cell in
+                self?.loaderView.isHidden = true
                 cell.nameLabel.text = dog.breedName
-                cell.imageView.image = dog.image
+                
+                self?.viewModel.getImage(from: dog, completion: { image in
+                        cell.imageView.image = image
+                })
             }
             .disposed(by: bag)
         

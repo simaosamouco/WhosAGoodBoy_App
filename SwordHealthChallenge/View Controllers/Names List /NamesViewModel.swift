@@ -65,6 +65,8 @@ class NamesViewModel {
         }
     }
     
+    //MARK: - Navigaiton
+    
     func cellSelected(_ dogProfile: DogProfile) {
         let detailViewModel = DogDetailViewModel(dogProfile: dogProfile, services: services, realm: realm)
         let detailVC = DogDetailViewController(viewModel: detailViewModel)

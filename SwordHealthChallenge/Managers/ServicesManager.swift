@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import Alamofire
 
 typealias APICompletion<T: Decodable> = (Result<T, Error>) -> Void

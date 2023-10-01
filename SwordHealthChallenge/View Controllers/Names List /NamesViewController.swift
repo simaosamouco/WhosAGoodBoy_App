@@ -29,7 +29,7 @@ class NamesViewController: UIViewController {
     
     private lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
-        sb.placeholder = "Search..."
+        sb.placeholder = "Who's a good boy?"
         sb.layer.cornerRadius = 15
         sb.layer.borderWidth = 0.5
         sb.layer.borderColor = UIColor(red:0, green:0, blue:0, alpha: 1).cgColor

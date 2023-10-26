@@ -1,4 +1,4 @@
-# SwordHealthChallenge
+# Who's a Good Boy?
 
 This is a Swift application that utilizes the Dog API to display various dog breeds and their details.  
 The app uses the MVVM design pattern with dependency injection and integrates various frameworks such as Alamofire, RxSwift, Realm, and SnapKit.

@@ -216,7 +216,6 @@ class DogDetailViewController: UIViewController {
                                         style: .plain,
                                         target: self,
                                         action: #selector(manageDogInDatabase))
-        barButtonItem.tintColor = .black
         DispatchQueue.main.async {
             self.navigationItem.rightBarButtonItem = self.barButtonItem
         }

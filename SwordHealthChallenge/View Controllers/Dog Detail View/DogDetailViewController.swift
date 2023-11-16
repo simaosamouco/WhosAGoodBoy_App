@@ -135,6 +135,7 @@ class DogDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = barButtonItem
         setUpBinding()
         handleDogImage()
+        scrollView.showsVerticalScrollIndicator = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
